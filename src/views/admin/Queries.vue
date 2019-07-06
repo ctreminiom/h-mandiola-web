@@ -8,9 +8,9 @@
       </div>
     </div>
 
-    <d-row>
-      <d-col v-for="(post, idx) in PostsListOne" :key="idx" lg="3" md="6" sm="12" class="mb-4">
-        <d-card class="card-small card-post card-post--1">
+        <d-row>
+      <d-col v-for="(post, idx) in PostsListTwo" :key="idx" lg="3" sm="12" class="mb-4">
+        <d-card class="card-small card-post card-post--aside card-post--1">
           <router-link :to="post.to">
             <div
               class="card-post__image"
@@ -22,10 +22,9 @@
               >{{ post.category }}</d-badge>
             </div>
           </router-link>
-
           <d-card-body>
             <h5 class="card-title">
-              <a href="#" class="text-fiord-blue">{{ post.title }}</a>
+              <a class="text-fiord-blue" href="#">{{ post.title }}</a>
             </h5>
             <p class="card-text d-inline-block mb-3">{{ post.body }}</p>
           </d-card-body>
@@ -36,12 +35,14 @@
 </template>
 
 <script>
-import Cards from "@/data/queries-card-items";
+
+import Pills from "@/data/Pills/queries-card-items-row-1"
+
 
 export default {
   data() {
     return {
-      PostsListOne: Cards()
+      PostsListTwo: Pills()
     };
   }
 };

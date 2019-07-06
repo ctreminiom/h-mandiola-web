@@ -9,7 +9,7 @@
     </div>
 
     <d-row>
-      <d-col v-for="(post, idx) in PostsListTwo" :key="idx" lg="6" sm="12" class="mb-4">
+      <d-col v-for="(post, idx) in PostsListOne" :key="idx" lg="6" sm="12" class="mb-4">
         <d-card class="card-small card-post card-post--aside card-post--1">
           <router-link :to="post.to">
             <div
@@ -33,7 +33,7 @@
     </d-row>
 
     <d-row>
-      <d-col v-for="(post, idx) in PostsListThree" :key="idx" lg="4" sm="12" class="mb-4">
+      <d-col v-for="(post, idx) in PostsListTwo" :key="idx" lg="4" sm="12" class="mb-4">
         <d-card class="card-small card-post card-post--aside card-post--1">
           <router-link :to="post.to">
             <div
@@ -59,14 +59,15 @@
 </template>
 
 <script>
-import Row1 from "@/data/administration-card-items-row-1";
-import Row2 from "@/data/administration-card-items-row-2";
+
+import Row2 from "@/data/Pills/administration-card-items-row-2";
+import Row1 from "@/data/Pills/administration-card-items-row-1";
 
 export default {
   data() {
     return {
-      PostsListTwo: Row1(),
-      PostsListThree: Row2()
+      PostsListTwo: Row2(),
+      PostsListOne: Row1()
     };
   }
 };

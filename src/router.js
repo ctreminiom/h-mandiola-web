@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/admin/Login.vue'
 
 import Dashboard from './layouts/AdminLayout.vue'
+import NotFound from './views/admin/NotFound.vue'
 
 import Security from './views/admin/Security.vue'
 import Administration from './views/admin/Administration.vue'
@@ -14,12 +15,13 @@ import Activities from './views/admin/Activities.vue'
 import Prices from './views/admin/Prices.vue'
 import Clients from './views/admin/Clients.vue'
 
-
 import Logs from './views/admin/Logs.vue'
 import Errors from './views/admin/Errors.vue'
 import ActiveClients from './views/admin/ActiveClients.vue'
 import RoomsReady from './views/admin/ReadyRooms.vue'
 
+import UserManagement from './views/admin/UsersManagement.vue'
+import PasswordManagement from './views/admin/PasswordManagement.vue'
 
 Vue.use(Router)
 
@@ -32,6 +34,17 @@ export default new Router({
       name: 'home',
       component: Home
     },
+    {
+      path: '/errors',
+      name: 'errors',
+      component: Errors,
+    },
+    {
+      path: '/NotFound',
+      name: 'NotFound',
+      component: NotFound,
+    },
+    
     {
       path: '/dashboard',
       name: 'dashboard',
@@ -112,6 +125,28 @@ export default new Router({
           component: RoomsReady
         }
       ]
+    },
+    {
+      path: '/dashboard/security',
+      name: 'dashboard',
+      component: Dashboard,
+      children: [
+        {
+          path: 'ManageUser',
+          name: 'ManageUser',
+          component: UserManagement
+        },
+        {
+          path: 'ChangePassword',
+          name: 'ChangePassword',
+          component: PasswordManagement
+        }
+      ]
+    },
+
+    {
+      path: '*',
+      redirect: '/NotFound'
     }
 
   ]
