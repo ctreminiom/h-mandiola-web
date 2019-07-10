@@ -32,7 +32,16 @@
                   <th scope="col" class="border-0">Image</th>
                 </tr>
               </thead>
-              <tbody>
+                  <tbody v-for="item in data" :key="item.ID">
+                      <tr>
+                            <td>{{item.ID}}</td>
+                            <td>{{item.Consecutive}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.image_path}}</td>
+                      </tr>
+                  </tbody>
+              <!--<tbody>
+                
                 <tr>
                   <td>123</td>
                   <td>1</td>
@@ -46,7 +55,7 @@
                   <td>[Load image]</td>
                 </tr>
 
-              </tbody>
+              </tbody>-->
             </table>
           </div>
         </div>
@@ -66,3 +75,33 @@
 
 
 </style>
+
+<script>
+
+
+export default {
+    data() {
+        return {
+
+        }
+    },
+
+    computed: {
+
+        data() {
+            return this.$store.getters.rooms//REVISAR
+        }
+
+    },
+    created() {
+
+        this.$store.dispatch('rooms').then(response => {
+            this.data = this.$store.getters.rooms //REVISAR
+        }, rooms => {
+            alert("ERROR PIDIENDO LOS ROOMS")
+        })
+
+    },
+  
+}
+</script>
