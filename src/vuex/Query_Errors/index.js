@@ -13,4 +13,3 @@ export default {
     getters,
     mutations
 }
-//remove this line

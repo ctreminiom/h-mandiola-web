@@ -28,7 +28,9 @@
                   <th scope="col" class="border-0">View customer</th>
                 </tr>
               </thead>
-              <tbody>
+
+              <p>Falta ver esta tabla porque maneja de diferentes tablas</p>
+             <!-- <tbody>
                 <tr>
                   <td>Classic</td>
                   <td>5</td>
@@ -40,7 +42,7 @@
                   <td><d-button class="boton" theme="warning">View</d-button></td>
                 </tr>
 
-              </tbody>
+              </tbody>--> 
             </table>
           </div>
         </div>
@@ -60,3 +62,30 @@
 
 
 </style>
+<script>
+export default {
+    data() {
+        return {
+
+        }
+    },
+
+    computed: {
+
+        data() {
+            return this.$store.getters.clients//REVISAR
+        }
+
+    },
+    created() {
+
+        this.$store.dispatch('clients').then(response => {
+            this.data = this.$store.getters.clients //REVISAR
+        }, error => {
+            alert("ERROR PIDIENDO LOS clients")
+        })
+
+    },
+  
+}
+</script>

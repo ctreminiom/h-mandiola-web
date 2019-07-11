@@ -21,12 +21,21 @@
             <table class="table mb-0">
               <thead class="bg-light">
                 <tr>
-                  <th scope="col" class="border-0">Date</th>
                   <th scope="col" class="border-0">Error code</th>
+                  <th scope="col" class="border-0">Date</th>
                   <th scope="col" class="border-0">Description</th>
                 </tr>
               </thead>
-              <tbody>
+
+                  <tbody v-for="item in data" :key="item.ID">
+                      <tr>
+                            <td>{{item.ID}}</td>
+                            <td>{{item.date}}</td>
+                            <td>{{item.detail}}</td>
+                      </tr>
+                  </tbody>
+
+              <!--<tbody>
                 <tr>
                   <td>12/02/1996</td>
                   <td>404</td>
@@ -38,7 +47,7 @@
                   <td>Server Busy</td>
                 </tr>
 
-              </tbody>
+              </tbody>-->
             </table>
           </div>
         </div>
@@ -58,3 +67,32 @@
 
 
 </style>
+
+
+<script>
+export default {
+    data() {
+        return {
+
+        }
+    },
+
+    computed: {
+
+        data() {
+            return this.$store.getters.errors//REVISAR
+        }
+
+    },
+    created() {
+
+        this.$store.dispatch('errors').then(response => {
+            this.data = this.$store.getters.errors //REVISAR
+        }, error => {
+            alert("ERROR PIDIENDO LOS errors")
+        })
+
+    },
+  
+}
+</script>

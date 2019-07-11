@@ -2,12 +2,12 @@ import Vue from 'vue'
 
 const actions = {
 
-    fetchRooms(context) {
+    fetchlogs(context) {
 
         return new Promise((resolve, reject) => {
 
             let options = {
-                url : "" ,//Pending to confirm the path!
+                url : "" ,//Pending to confirm the path 
                 method: "GET",
 
                 headers: {
@@ -17,7 +17,7 @@ const actions = {
             }
 
             Vue.http(options).then(response => {
-                context.commit("Rooms", response.body)
+                context.commit("logs", response.body)
                 resolve(true)
 
             }, error => {

@@ -42,7 +42,15 @@
                   <th scope="col" class="border-0">View Details</th>
                 </tr>
               </thead>
-              <tbody>
+
+                  <tbody v-for="item in data" :key="item.ID">
+                      <tr>
+                            <td>{{item.ID}}</td>
+                            <td>{{item.username}}</td>
+                            <td>{{item.detail}}</td>
+                      </tr>
+                  </tbody>
+             <!-- <tbody>
                 <tr>
                   <td>123</td>
                   <td>Carlos</td>
@@ -58,7 +66,7 @@
                   </td>
                 </tr>
 
-              </tbody>
+              </tbody>-->
             </table>
           </div>
         </div>
@@ -78,3 +86,31 @@
 
 
 </style>
+
+<script>
+export default {
+    data() {
+        return {
+
+        }
+    },
+
+    computed: {
+
+        data() {
+            return this.$store.getters.logs//REVISAR
+        }
+
+    },
+    created() {
+
+        this.$store.dispatch('logs').then(response => {
+            this.data = this.$store.getters.logs //REVISAR
+        }, error => {
+            alert("ERROR PIDIENDO LOS LOGS")
+        })
+
+    },
+  
+}
+</script>

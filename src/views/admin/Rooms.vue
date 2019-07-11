@@ -77,8 +77,6 @@
 </style>
 
 <script>
-
-
 export default {
     data() {
         return {
@@ -97,7 +95,7 @@ export default {
 
         this.$store.dispatch('rooms').then(response => {
             this.data = this.$store.getters.rooms //REVISAR
-        }, rooms => {
+        }, error => {
             alert("ERROR PIDIENDO LOS ROOMS")
         })
 
