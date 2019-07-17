@@ -7,7 +7,7 @@ const actions = {
         return new Promise((resolve, reject) => {
 
             let options = {
-                url : "" ,//Pending to confirm the path 
+                url : "http://localhost:5000/api/module/errors" ,//Pending to confirm the path 
                 method: "GET",
 
                 headers: {

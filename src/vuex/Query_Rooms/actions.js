@@ -7,7 +7,7 @@ const actions = {
         return new Promise((resolve, reject) => {
 
             let options = {
-                url : "" ,//Pending to confirm the path!
+                url : "" ,//Not found
                 method: "GET",
 
                 headers: {

@@ -20,12 +20,12 @@
             <d-card-body align="left" title="Admin">
               <d-form inline class="login-form">
                 <label class="sr-only" for="f1_Username">Username</label>
-                <d-input id="f1_Username" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Username" />
+                <d-input id="f1_Username" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Username" v-model="username"/>
 
                 <label class="sr-only" for="f1_Password">Password</label>
-                <d-input id="f2_Password" class="mr-2" type="password" placeholder="Password" />
+                <d-input id="f2_Password" class="mr-2" type="password" placeholder="Password" v-model="password"/>
 
-                <d-button theme="primary">Login</d-button>
+                <d-button theme="primary" @click="login">Login</d-button>
               </d-form>
             </d-card-body>
           </d-card>
@@ -45,3 +45,43 @@
     margin-top: 100px;
 }
 </style>
+
+
+<script>
+    export default {
+        data() {
+            return {
+                title: "Welcome to the system",
+                username: "",
+                password: ""
+            };
+        },
+    
+        methods: {
+            login() {
+    
+                var user = {
+                    username: this.username, //Check
+                    password: this.password //Check
+                }
+
+                this.$store.dispatch('login', user).then(response => {
+
+
+
+                    //Get alls users
+                    this.$store.dispatch('fetchUsers')
+
+    
+                    this.$router.push("dashboard/administration");
+    
+                }, error => {
+                    alert("Usuario o contrasena incorrectos")
+                })
+    
+    
+            }
+        }
+    };
+</script>
+
