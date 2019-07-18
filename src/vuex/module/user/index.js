@@ -2,9 +2,12 @@ import actions from './actions'
 import getters from './getters'
 import mutations from './mutations'
 
+
 const state = {
-    error: null
+    isLoggedIn: !!localStorage.getItem("token"),
+    permissions: null
 }
+
 
 export default {
     namespace: false,

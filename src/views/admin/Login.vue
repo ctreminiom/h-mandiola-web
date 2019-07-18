@@ -3,7 +3,7 @@
     <d-navbar toggleable="md" type="dark" theme="primary">
       <d-navbar-toggle target="nav-collapse"></d-navbar-toggle>
       <d-navbar-brand>
-        <h6 class="text-white my-auto mr-4">H-Mandiola - Admin </h6>
+        <h6 class="text-white my-auto mr-4">H-Mandiola - Admin</h6>
       </d-navbar-brand>
 
       <d-collapse is-nav id="nav-collapse">
@@ -20,10 +20,19 @@
             <d-card-body align="left" title="Admin">
               <d-form inline class="login-form">
                 <label class="sr-only" for="f1_Username">Username</label>
-                <d-input id="f1_Username" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Username" v-model="username"/>
+                <d-input
+                  class="mb-2 mr-sm-2 mb-sm-0"
+                  placeholder="Username"
+                  v-model="username"
+                />
 
                 <label class="sr-only" for="f1_Password">Password</label>
-                <d-input id="f2_Password" class="mr-2" type="password" placeholder="Password" v-model="password"/>
+                <d-input
+                  class="mr-2"
+                  type="password"
+                  placeholder="Password"
+                  v-model="password"
+                />
 
                 <d-button theme="primary" @click="login">Login</d-button>
               </d-form>
@@ -42,46 +51,49 @@
 }
 
 .form-container {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 </style>
 
 
 <script>
-    export default {
-        data() {
-            return {
-                title: "Welcome to the system",
-                username: "",
-                password: ""
-            };
-        },
-    
-        methods: {
-            login() {
-    
-                var user = {
-                    username: this.username, //Check
-                    password: this.password //Check
-                }
-
-                this.$store.dispatch('login', user).then(response => {
-
-
-
-                    //Get alls users
-                    this.$store.dispatch('fetchUsers')
-
-    
-                    this.$router.push("dashboard/administration");
-    
-                }, error => {
-                    alert("Usuario o contrasena incorrectos")
-                })
-    
-    
-            }
-        }
+export default {
+  data() {
+    return {
+      title: "Welcome to the system",
+      username: "",
+      password: ""
     };
+  },
+
+  methods: {
+    login() {
+
+      let user = {
+        username: this.username, //Check
+        password: this.password //Check
+      };
+
+      this.$store.dispatch("loginUser", user).then(
+        response => {
+          console.log(response)
+
+          this.$notify({
+            group: "foo",
+            type: "success",
+            text: "Login successuffly!"
+          });
+          
+          this.$router.push("/dashboard");
+
+
+
+        }, error => {
+          console.log(error)
+        }
+      )
+    }
+  }
+};
 </script>
 
