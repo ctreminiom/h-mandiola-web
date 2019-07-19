@@ -1,7 +1,9 @@
-FROM node:lts-alpine
+FROM node:10
 
 # make the 'app' folder the current working directory
 WORKDIR /app
+
+RUN npm install -g http-server
 
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
@@ -13,8 +15,8 @@ RUN npm install --loglevel info
 COPY . .
 
 # build app for production with minification
-#RUN yarn build
+RUN yarn build
 
 EXPOSE 8080
 
-CMD [ "npm", "run", "serve" ]
+CMD [ "http-server", "dist" ]
