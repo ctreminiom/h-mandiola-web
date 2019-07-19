@@ -1,7 +1,4 @@
 <template>
-
-
-
   <div class="main-content-container container-fluid px-4">
     <!-- Page Header -->
     <div class="page-header row no-gutters py-4">
@@ -11,106 +8,116 @@
       </div>
     </div>
 
-    <div class="col-12 col-sm-12 text-center text-sm-center mb-2"> 
-              <div class="input-group input-group-seamless ml-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <i class="fas fa-search"></i>
-              <br>
-              <br>
-            </div>
+    <div class="col-12 col-sm-12 text-center text-sm-center mb-2">
+      <div class="input-group input-group-seamless ml-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="fas fa-search"></i>
+            <br />
+            <br />
           </div>
-          <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search">
         </div>
+        <input
+          class="navbar-search form-control"
+          type="text"
+          placeholder="Search for something..."
+          aria-label="Search"
+        />
+      </div>
     </div>
 
     <!-- Default Light Table -->
     <div class="row">
-
-
       <div class="col">
         <div class="card card-small mb-4">
           <div class="card-header border-bottom">
             <h6 class="m-0">Log details table</h6>
           </div>
           <div class="card-body p-0 pb-3 text-center">
-            <table class="table mb-0">
-              <thead class="bg-light">
-                <tr>
-                  <th scope="col" class="border-0">ID</th>
-                  <th scope="col" class="border-0">Actor</th>
-                  <th scope="col" class="border-0">View Details</th>
-                </tr>
-              </thead>
-
-                  <tbody v-for="item in data" :key="item.ID">
-                      <tr>
-                            <td>{{item.ID}}</td>
-                            <td>{{item.username}}</td>
-                            <td>{{item.detail}}</td>
-                      </tr>
-                  </tbody>
-             <!-- <tbody>
-                <tr>
-                  <td>123</td>
-                  <td>Carlos</td>
-                  <td>
-                      <d-button class="boton" theme="info">Details</d-button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>123</td>
-                  <td>Carlos</td>
-                  <td>
-                      <d-button class="boton" theme="info">Details</d-button>
-                  </td>
-                </tr>
-
-              </tbody>-->
-            </table>
+            <a-table
+              :columns="columns"
+              :dataSource="dataSource"
+              @change="handleTableChange"
+              :customRow="customRow"
+            >
+              <template slot="name" slot-scope="name">{{ name.first }} {{ name.last }}</template>
+            </a-table>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 
 
 <style scoped>
-
 .boton {
-    margin-right: 10px;
+  margin-right: 10px;
 }
-
-
 </style>
 
 <script>
 export default {
-    data() {
-        return {
-
+  mounted() {
+    this.fetch();
+  },
+  data() {
+    return {
+      dataSource: null,
+      columns: [
+        {
+          title: "ID",
+          dataIndex: "id",
+          key: "id"
+        },
+        {
+          title: "Code",
+          dataIndex: "code",
+          key: "code"
+        },
+        {
+          title: "Username",
+          dataIndex: "username",
+          key: "username"
+        },
+        {
+          title: "Date",
+          dataIndex: "date",
+          key: "date"
+        },
+        {
+          title: "Detail",
+          dataIndex: "detail",
+          key: "detail"
         }
+      ]
+    };
+  },
+  methods: {
+    handleTableChange() {
     },
-
-    computed: {
-
-        data() {
-            return this.$store.getters.logs//REVISAR
+    fetch() {
+      this.$store.dispatch("Logs").then(
+        response => {
+          this.dataSource = response.body
+        },
+        error => {
+          this.$message.error(error);
         }
+      );
 
     },
-    created() {
-
-        this.$store.dispatch('logs').then(response => {
-            this.data = this.$store.getters.logs //REVISAR
-        }, error => {
-            alert("ERROR PIDIENDO LOS LOGS")
-        })
-
-    },
-  
-}
+    customRow(record, index) {
+      const { $message } = this;
+      return {
+        on: {
+          click: () => {
+            $message.info(`点了第${index}行`);
+          }
+        }
+      };
+    }
+  }
+};
 </script>

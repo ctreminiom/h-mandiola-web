@@ -12,6 +12,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '@/assets/scss/shards-dashboards.scss';
 import '@/assets/scss/date-range.scss';
 
+
+
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
+
+Vue.use(Antd)
+
 ShardsVue.install(Vue);
 Vue.use(Resource);
 Vue.use(Notifications)

@@ -20,21 +20,14 @@
             <d-card-body align="left" title="Admin">
               <d-form inline class="login-form">
                 <label class="sr-only" for="f1_Username">Username</label>
-                <d-input
-                  class="mb-2 mr-sm-2 mb-sm-0"
-                  placeholder="Username"
-                  v-model="username"
-                />
+                <d-input class="mb-2 mr-sm-2 mb-sm-0" placeholder="Username" v-model="username" />
 
                 <label class="sr-only" for="f1_Password">Password</label>
-                <d-input
-                  class="mr-2"
-                  type="password"
-                  placeholder="Password"
-                  v-model="password"
-                />
+                <d-input class="mr-2" type="password" placeholder="Password" v-model="password" />
 
-                <d-button theme="primary" @click="login">Login</d-button>
+                <a @click="login()"> AAAAAAAAAAAAAAAAAAAA </a>
+
+                <d-button theme="primary" @click="login()">Login</d-button>
               </d-form>
             </d-card-body>
           </d-card>
@@ -68,7 +61,6 @@ export default {
 
   methods: {
     login() {
-
       let user = {
         username: this.username, //Check
         password: this.password //Check
@@ -76,22 +68,12 @@ export default {
 
       this.$store.dispatch("loginUser", user).then(
         response => {
-          console.log(response)
-
-          this.$notify({
-            group: "foo",
-            type: "success",
-            text: "Login successuffly!"
-          });
-          
           this.$router.push("/dashboard");
-
-
-
-        }, error => {
-          console.log(error)
+        },
+        error => {
+          this.$message.error("Invalid username or password");
         }
-      )
+      );
     }
   }
 };
