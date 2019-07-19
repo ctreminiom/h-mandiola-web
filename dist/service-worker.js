@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.0b4e4156b2970433e548addba91fc271.js"
+  "/precache-manifest.04ab004e78723f94e1d02cc34d969a4e.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "h-mandiola-web"});

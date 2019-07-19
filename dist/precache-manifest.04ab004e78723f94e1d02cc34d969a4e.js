@@ -32,8 +32,8 @@ self.__precacheManifest = [
     "url": "/img/shards-dashboards-logo.60a85991.svg"
   },
   {
-    "revision": "1b97c841688be5d88614",
-    "url": "/js/app.8b198c9b.js"
+    "revision": "a2e1f4d63b2c9584b0e3",
+    "url": "/js/app.5e336103.js"
   },
   {
     "revision": "01bee267ae8a168dc092",
@@ -56,11 +56,11 @@ self.__precacheManifest = [
     "url": "/img/logs.b5bf7cac.png"
   },
   {
-    "revision": "44581006bfc24733629d880eaabe3f4d",
+    "revision": "a185c80e9da68983ac8d392f49f54ba0",
     "url": "/index.html"
   },
   {
-    "revision": "1b97c841688be5d88614",
+    "revision": "a2e1f4d63b2c9584b0e3",
     "url": "/css/app.c72945e7.css"
   }
 ];
