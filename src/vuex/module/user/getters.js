@@ -1,6 +1,6 @@
 const getters = {
     isAuthenticated: state => { return state.isLoggedIn },
-    permissions: state => { return state.permissions }
+    users: state => { return state.users }
 }
 
 export default getters

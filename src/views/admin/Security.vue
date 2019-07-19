@@ -8,38 +8,24 @@
       </div>
     </div>
 
-    <!-- Default Light Table -->
     <div class="row">
       <div class="col">
         <div class="card card-small mb-4">
-          <div class="card-header border-bottom">
-          </div>
+          <div class="card-header border-bottom"></div>
           <div class="card-body p-0 pb-3 text-center">
-            <table class="table mb-0">
-              <thead class="bg-light">
-                <tr>
-                  <th scope="col" class="border-0">#</th>
-                  <th scope="col" class="border-0">Consecutive</th>
-                  <th scope="col" class="border-0">Username</th>
-                  <th scope="col" class="border-0">Email</th>
-                  <th scope="col" class="border-0">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>USER-20</td>
-                  <td>ctreminio</td>
-                  <td>ctreminiom079@gmail.com</td>
-                  <td>
-                      <d-button class="boton" theme="info">View</d-button>
-                      <d-button class="boton" theme="warning">Change password</d-button>
-                      <d-button theme="danger">Delete</d-button>
-                  </td>
-                </tr>
-                
-              </tbody>
-            </table>
+
+            <a-button type="primary" @click="go" block>New</a-button>
+
+
+            <a-table
+              :columns="columns"
+              :dataSource="dataSource"
+              @change="handleTableChange"
+              :customRow="customRow"
+            >
+              <a slot="action" slot-scope="text" href="javascript:;">Ver</a>
+              <template slot="name" slot-scope="name">{{ name.first }} {{ name.last }}</template>
+            </a-table>
           </div>
         </div>
       </div>
@@ -49,10 +35,64 @@
 
 
 <style scoped>
-
 .boton {
-    margin-right: 10px;
+  margin-right: 10px;
 }
-
-
 </style>
+
+<script>
+export default {
+  mounted() {
+    this.fetch();
+  },
+  data() {
+    return {
+      dataSource: null,
+      columns: [
+        {
+          title: "ID",
+          dataIndex: "id",
+          key: "id"
+        },
+        {
+          title: "Username",
+          dataIndex: "username",
+          key: "username"
+        },
+        {
+          title: "Action",
+          dataIndex: "",
+          key: "x",
+          scopedSlots: { customRender: "action" }
+        }
+      ]
+    };
+  },
+  methods: {
+    go() {
+      this.$router.push("/dashboard/security/newUser");
+    },
+    handleTableChange() {},
+    fetch() {
+      this.$store.dispatch("getUsers").then(
+        response => {
+          this.dataSource = response.body;
+        },
+        error => {
+          this.$message.error(error);
+        }
+      );
+    },
+    customRow(record, index) {
+      const { $message } = this;
+      return {
+        on: {
+          click: () => {
+            $message.info(index);
+          }
+        }
+      };
+    }
+  }
+};
+</script>

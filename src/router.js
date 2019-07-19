@@ -20,12 +20,12 @@ import Errors from './views/admin/Errors.vue'
 import ActiveClients from './views/admin/ActiveClients.vue'
 import RoomsReady from './views/admin/ReadyRooms.vue'
 
-import UserManagement from './views/admin/UsersManagement.vue'
+import UserManagement from './views/admin/NewUser.vue'
 import PasswordManagement from './views/admin/PasswordManagement.vue'
 
 Vue.use(Router)
 
-export default new Router({
+export default new Router({ 
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -132,8 +132,8 @@ export default new Router({
       component: Dashboard,
       children: [
         {
-          path: 'ManageUser',
-          name: 'ManageUser',
+          path: 'newUser',
+          name: 'newUser',
           component: UserManagement
         },
         {

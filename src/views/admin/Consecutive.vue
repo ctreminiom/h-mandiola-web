@@ -18,31 +18,14 @@
             <h6 class="m-0">Consecutive</h6>
           </div>
           <div class="card-body p-0 pb-3 text-center">
-            <table class="table mb-0">
-              <thead class="bg-light">
-                <tr>
-                  <th scope="col" class="border-0">Code</th>
-                  <th scope="col" class="border-0">Description</th>
-                  <th scope="col" class="border-0">Consecutive</th>
-                  <th scope="col" class="border-0">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>123</td>
-                  <td>Tarifas</td>
-                  <td>1</td>
-                  <td><d-button class="boton" theme="warning">Edit</d-button></td>
-                </tr>
-                <tr>
-                  <td>456</td>
-                  <td>Productos</td>
-                  <td>2</td>
-                  <td><d-button class="boton" theme="warning">Edit</d-button></td>
-                </tr>
-
-              </tbody>
-            </table>
+            <a-table
+              :columns="columns"
+              :dataSource="dataSource"
+              @change="handleTableChange"
+              :customRow="customRow"
+            >
+              <template slot="name" slot-scope="name">{{ name.first }} {{ name.last }}</template>
+            </a-table>
           </div>
         </div>
       </div>
@@ -61,3 +44,85 @@
 
 
 </style>
+
+<script>
+export default {
+  mounted() {
+    this.$message.info("Loaded");
+    this.fetch();
+  },
+  data() {
+    return {
+      dataSource: null,
+      columns: [
+        {
+          title: "ID",
+          dataIndex: "id",
+          key: "id"
+        },
+        {
+          title: "Type",
+          dataIndex: "type",
+          key: "type"
+        },
+        {
+          title: "Description",
+          dataIndex: "description",
+          key: "description"
+        },
+        {
+          title: "has_prefix",
+          dataIndex: "has_prefix",
+          key: "has_prefix"
+        },
+        {
+          title: "prefix",
+          dataIndex: "prefix",
+          key: "prefix"
+        },
+        {
+          title: "has_range",
+          dataIndex: "has_range",
+          key: "has_range"
+        },
+        {
+          title: "initial",
+          dataIndex: "initial",
+          key: "initial"
+        },
+        {
+          title: "final",
+          dataIndex: "final",
+          key: "final"
+        }
+      ]
+    };
+  },
+  methods: {
+    handleTableChange() {
+    },
+    fetch() {
+      this.$store.dispatch("Consecutives").then(
+        response => {
+          this.dataSource = response.body
+        },
+        error => {
+          this.$message.error(error);
+        }
+      );
+
+    },
+    customRow(record, index) {
+      const { $message } = this;
+      return {
+        on: {
+          click: () => {
+            $message.info(`点了第${index}行`);
+          }
+        }
+      };
+    }
+  }
+};
+</script>
+

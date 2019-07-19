@@ -60,6 +60,7 @@
 <script>
 export default {
   mounted() {
+    this.$message.info("Loaded");
     this.fetch();
   },
   data() {

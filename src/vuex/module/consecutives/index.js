@@ -4,8 +4,7 @@ import mutations from './mutations'
 
 
 const state = {
-    isLoggedIn: !!localStorage.getItem("token"),
-    users: null
+    consecutives: null
 }
 
 

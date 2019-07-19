@@ -44,6 +44,7 @@
 export default {
   mounted() {
     this.fetch();
+    this.$message.info("Loaded");
   },
   data() {
     return {
@@ -73,6 +74,7 @@ export default {
     };
   },
   methods: {
+
     handleTableChange() {
     },
     fetch() {
@@ -84,6 +86,7 @@ export default {
           this.$message.error(error);
         }
       );
+
 
     },
     customRow(record, index) {
