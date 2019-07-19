@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import userModule from '@/vuex/module/user'
-import logModule from '@/vuex/module/logs'
-import errorModule from '@/vuex/module/errors'
-import consecutiveModule from '@/vuex/module/consecutives'
+import userModule from './module/user'
+import logModule from './module/logs'
+import errorModule from './module/errors'
+import consecutiveModule from './module/consecutives'
 
 
 Vue.use(Vuex)
