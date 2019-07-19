@@ -4,6 +4,7 @@ FROM node:10
 WORKDIR /app
 
 RUN npm install -g http-server
+RUN npm install babel-loader
 
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
