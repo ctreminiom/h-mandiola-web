@@ -10,6 +10,10 @@
       </div>
     </div>
 
+    <div class="col-12 col-sm-12 text-center text-sm-center mb-2"> 
+      <button type="button" class="btn btn-secondary btn-lg btn-block">Create a new room</button>
+    </div>
+
     <!-- Default Light Table -->
     <div class="row">
       <div class="col">

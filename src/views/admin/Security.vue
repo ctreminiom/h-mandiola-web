@@ -8,23 +8,31 @@
       </div>
     </div>
 
+    <div class="col-12 col-sm-12 text-center mb-2">
+      <a-button size="large" @click="go" type="primary" block>Create new user</a-button>
+    </div>
+    <br />
+
     <div class="row">
       <div class="col">
         <div class="card card-small mb-4">
           <div class="card-header border-bottom"></div>
           <div class="card-body p-0 pb-3 text-center">
+            <a-table :columns="columns" :dataSource="dataSource">
+              <span slot="customTitle">ID</span>
+              <a slot="username" slot-scope="text" href="javascript:;">
+                <a-icon type="smile-o" />
+                {{text}}
+              </a>
 
-            <a-button type="primary" @click="go" block>New</a-button>
-
-
-            <a-table
-              :columns="columns"
-              :dataSource="dataSource"
-              @change="handleTableChange"
-              :customRow="customRow"
-            >
-              <a slot="action" slot-scope="text" href="javascript:;">Ver</a>
-              <template slot="name" slot-scope="name">{{ name.first }} {{ name.last }}</template>
+              <span slot="action">
+                <a href="javascript:;">View</a>
+                <a-divider type="vertical" />
+                <a href="javascript:;">Change password</a>
+                <a-divider type="vertical" />
+                <a href="javascript:;">Delete</a>
+                
+              </span>
             </a-table>
           </div>
         </div>
@@ -60,6 +68,11 @@ export default {
           key: "username"
         },
         {
+          title: "Email",
+          dataIndex: "email",
+          key: "email"
+        },
+        {
           title: "Action",
           dataIndex: "",
           key: "x",
@@ -70,7 +83,7 @@ export default {
   },
   methods: {
     go() {
-      this.$router.push("/dashboard/security/newUser");
+      this.$router.push("/dashboard/security/user/new");
     },
     handleTableChange() {},
     fetch() {

@@ -132,7 +132,7 @@ export default new Router({
       component: Dashboard,
       children: [
         {
-          path: 'newUser',
+          path: 'user/new',
           name: 'newUser',
           component: UserManagement
         },
