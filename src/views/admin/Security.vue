@@ -25,19 +25,31 @@
                 {{text}}
               </a>
 
-              <span slot="action">
+              <template slot="action" slot-scope="text, record">
                 <a href="javascript:;">View</a>
                 <a-divider type="vertical" />
-                <a href="javascript:;">Change password</a>
+
+                <a href="javascript:;" @click="goToChangePassword(record.id ,record.username)" >Change password</a>
+
                 <a-divider type="vertical" />
-                <a href="javascript:;">Delete</a>
-                
-              </span>
+                <a-popconfirm
+                  v-if="dataSource.length"
+                  title="Sure to delete?"
+                  @confirm="() => onDelete(record.username)"
+                >
+                  <a href="javascript:;">Delete</a>
+                </a-popconfirm>
+              </template>
             </a-table>
           </div>
         </div>
       </div>
     </div>
+
+
+
+
+
   </div>
 </template>
 
@@ -105,7 +117,40 @@ export default {
           }
         }
       };
+    },
+    onDelete(key) {
+      this.$store.dispatch("deleteUser", key).then(
+        response => {
+
+          this.$notification.config({
+            placement: "bottomRight",
+            bottom: "50px",
+            duration: 3
+          });
+
+          this.$notification['info']({
+          message: "User Module",
+          description: response.body,
+
+        });
+
+        this.fetch();
+
+        },
+        error => {
+
+          this.$notification['error']({
+          message: "User Module",
+          description: error,
+
+        });
+        }
+      );
+    },
+    goToChangePassword (id, key) {
+      this.$router.push({ name: 'changePassword', params: {id: id, username: key }})
     }
+
   }
 };
 </script>

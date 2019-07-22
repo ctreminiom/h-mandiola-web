@@ -68,6 +68,65 @@ const actions = {
 
         })
 
+    },
+
+    deleteUser(context, data) {
+
+        return new Promise((resolve, reject) => {
+
+            if (data == "ctreminio") {
+                reject("You cannot delete this admin account")
+            }
+
+
+            let options = {
+                url: "http://35.188.37.134/api/module/user",
+                method: "DELETE",
+                headers: {
+                    Authorization:
+                        "Bearer " + localStorage.getItem("token")
+                },
+                params: {
+                    username: data
+                }
+            }
+
+            Vue.http(options).then(response => {
+                resolve(response)
+            }, error => {
+                reject(error)
+            })
+
+        })
+
+    },
+
+    updatePassword(context, data) {
+
+        return new Promise((resolve, reject) => {
+
+
+            let options = {
+                url: "http://35.188.37.134/api/module/user",
+                method: "PUT",
+                body: data.body,
+                headers: {
+                    Authorization:
+                        "Bearer " + localStorage.getItem("token")
+                },
+                params: {
+                    username: data.username
+                }
+            }
+
+            Vue.http(options).then(response => {
+                resolve(response)
+            }, error => {
+                reject(error)
+            })
+
+        })
+
     }
 
 }

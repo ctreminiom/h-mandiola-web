@@ -21,7 +21,7 @@ import ActiveClients from './views/admin/ActiveClients.vue'
 import RoomsReady from './views/admin/ReadyRooms.vue'
 
 import UserManagement from './views/admin/NewUser.vue'
-import PasswordManagement from './views/admin/PasswordManagement.vue'
+import ChangePassword from './views/admin/ChangePassword.vue'
 
 Vue.use(Router)
 
@@ -137,9 +137,10 @@ export default new Router({
           component: UserManagement
         },
         {
-          path: 'ChangePassword',
-          name: 'ChangePassword',
-          component: PasswordManagement
+          path: 'user/:id/change/password',
+          name: 'changePassword',
+          component: ChangePassword,
+          props: true
         }
       ]
     },
