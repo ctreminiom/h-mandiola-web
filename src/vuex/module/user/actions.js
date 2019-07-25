@@ -1,5 +1,6 @@
 import Vue from 'vue'
 
+/* eslint-disable */
 const actions = {
 
     loginUser(context, data) {

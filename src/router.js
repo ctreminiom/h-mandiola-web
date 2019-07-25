@@ -1,140 +1,81 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/admin/Login.vue'
 
-import Dashboard from './layouts/AdminLayout.vue'
-import NotFound from './views/admin/NotFound.vue'
+import AdminDashboard from './layout/admin/dashboard'
 
-import Security from './views/admin/Security.vue'
-import Administration from './views/admin/Administration.vue'
-import Queries from './views/admin/Queries.vue'
+import ClientLogin from './views/client/Login'
+import AdminLogin from './views/admin/Login'
 
-import Consecutives from './views/admin/Consecutive.vue'
-import Rooms from './views/admin/Rooms.vue'
-import Activities from './views/admin/Activities.vue'
-import Prices from './views/admin/Prices.vue'
-import Clients from './views/admin/Clients.vue'
+import AdminUser from './views/admin/security/User'
+import newUser from './views/admin/security/NewUser'
+import ChangePassword from './views/admin/security/ChangePassword'
+import AdminRole from './views/admin/security/Role'
 
-import Logs from './views/admin/Logs.vue'
-import Errors from './views/admin/Errors.vue'
-import ActiveClients from './views/admin/ActiveClients.vue'
-import RoomsReady from './views/admin/ReadyRooms.vue'
 
-import UserManagement from './views/admin/NewUser.vue'
-import ChangePassword from './views/admin/ChangePassword.vue'
+import AdminLog from './views/admin/queries/Logs'
+import AdminError from './views/admin/queries/Errors'
+
+
+import ActivityAdmin from './views/admin/administration/Activity'
+
 
 Vue.use(Router)
 
-export default new Router({ 
+export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'client-login',
+      component: ClientLogin
     },
     {
-      path: '/errors',
-      name: 'errors',
-      component: Errors,
+      path: "/admin/login",
+      name: 'admin-login',
+      component: AdminLogin
     },
     {
-      path: '/NotFound',
-      name: 'NotFound',
-      component: NotFound,
-    },
-    
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: Dashboard,
+      path: "/admin/dasboard",
+      name: 'admin-dashboard',
+      component: AdminDashboard,
       children: [
         {
-          path: 'security',
-          name: 'user',
-          component: Security
+          path: 'security/users',
+          name: 'users',
+          component: AdminUser
         },
         {
-          path: 'administration',
-          name: 'administration',
-          component: Administration,
+          path: 'security/roles',
+          name: 'roles',
+          component: AdminRole
         },
         {
-          path: 'queries',
-          name: 'queries',
-          component: Queries
-        }
-      ]
-    },
-    {
-      path: '/dashboard/administration',
-      name: 'dashboard',
-      component: Dashboard,
-      children: [
-        {
-          path: 'consecutives',
-          name: 'consecutives',
-          component: Consecutives
-        },
-        {
-          path: 'rooms',
-          name: 'rooms',
-          component: Rooms
-        },
-        {
-          path: 'activities',
-          name: 'activities',
-          component: Activities
-        },
-        {
-          path: 'prices',
-          name: 'prices',
-          component: Prices
-        },
-        {
-          path: 'clients',
-          name: 'clients',
-          component: Clients
-        }
-      ]
-    },
-    {
-      path: '/dashboard/queries',
-      name: 'dashboard',
-      component: Dashboard,
-      children: [
-        {
-          path: 'errors',
-          name: 'errors',
-          component: Errors
-        },
-        {
-          path: 'logs',
+          path: 'queries/logs',
           name: 'logs',
-          component: Logs
+          component: AdminLog
         },
         {
-          path: 'clients',
-          name: 'clients',
-          component: ActiveClients
+          path: 'queries/errors',
+          name: 'errors',
+          component: AdminError
         },
         {
-          path: 'rooms',
-          name: 'rooms',
-          component: RoomsReady
+          path: 'administration/actities',
+          name: 'admin-activity',
+          component: ActivityAdmin
         }
       ]
     },
     {
-      path: '/dashboard/security',
+      path: "/admin/dasboard/security",
       name: 'dashboard',
-      component: Dashboard,
+      component: AdminDashboard,
       children: [
         {
           path: 'user/new',
-          name: 'newUser',
-          component: UserManagement
+          name: 'new-user',
+          component: newUser,
         },
         {
           path: 'user/:id/change/password',
@@ -143,12 +84,6 @@ export default new Router({
           props: true
         }
       ]
-    },
-
-    {
-      path: '*',
-      redirect: '/NotFound'
     }
-
   ]
 })

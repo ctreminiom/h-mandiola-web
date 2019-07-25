@@ -1,81 +1,98 @@
 <template>
-  <div class="about">
-    <d-navbar toggleable="md" type="dark" theme="primary">
-      <d-navbar-toggle target="nav-collapse"></d-navbar-toggle>
-      <d-navbar-brand>
-        <h6 class="text-white my-auto mr-4">H-Mandiola - Admin</h6>
-      </d-navbar-brand>
+  <div>
+    <a-menu mode="horizontal">
+      <a-menu-item key="mail" @click="handleLink">
+        <a-icon type="mail" />Client
+      </a-menu-item>
+    </a-menu>
 
-      <d-collapse is-nav id="nav-collapse">
-        <d-navbar-nav>
-          <d-nav-item href="#">Client Site</d-nav-item>
-        </d-navbar-nav>
-      </d-collapse>
-    </d-navbar>
+    <br />
 
-    <d-container class="form-container">
-      <d-row>
-        <d-col cols="12" md="4" lg="6" offset-lg="3">
-          <d-card>
-            <d-card-body align="left" title="Admin">
-              <d-form inline class="login-form">
-                <label class="sr-only" for="f1_Username">Username</label>
-                <d-input class="mb-2 mr-sm-2 mb-sm-0" placeholder="Username" v-model="username" />
-
-                <label class="sr-only" for="f1_Password">Password</label>
-                <d-input class="mr-2" type="password" placeholder="Password" v-model="password" />
-
-                <a @click="login()"> AAAAAAAAAAAAAAAAAAAA </a>
-
-                <d-button theme="primary" @click="login()">Login</d-button>
-              </d-form>
-            </d-card-body>
-          </d-card>
-        </d-col>
-      </d-row>
-    </d-container>
+    <a-row>
+      <a-col :span="12" :offset="8">
+        <br />
+        <a-card hoverable style="width: 500px">
+          <a-form
+            id="components-form-demo-normal-login"
+            :form="form"
+            class="login-form"
+            @submit="handleSubmit"
+          >
+            <a-form-item>
+              <a-input
+                v-decorator="[
+          'userName',
+          { rules: [{ required: true, message: 'Please input your username!' }] }
+        ]"
+                placeholder="Username"
+              >
+                <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
+              </a-input>
+            </a-form-item>
+            <a-form-item>
+              <a-input
+                v-decorator="[
+          'password',
+          { rules: [{ required: true, message: 'Please input your Password!' }] }
+        ]"
+                type="password"
+                placeholder="Password"
+              >
+                <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+              </a-input>
+            </a-form-item>
+            <a-form-item>
+              <a-button block type="primary" html-type="submit" class="login-form-button">Log in</a-button>
+            </a-form-item>
+          </a-form>
+        </a-card>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
-<style scoped>
-.login-form {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.form-container {
-  margin-top: 100px;
-}
-</style>
-
-
 <script>
+/* eslint-disable */
 export default {
-  data() {
-    return {
-      title: "Welcome to the system",
-      username: "",
-      password: ""
-    };
+  beforeCreate() {
+    this.form = this.$form.createForm(this);
   },
-
   methods: {
-    login() {
-      let user = {
-        username: this.username, //Check
-        password: this.password //Check
-      };
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          let user = {
+            username: this.form.fieldsStore.fields.userName["value"], //Check
+            password: this.form.fieldsStore.fields.password["value"] //Check
+          };
 
-      this.$store.dispatch("loginUser", user).then(
-        response => {
-          this.$router.push("/dashboard");
-        },
-        error => {
-          this.$message.error("Invalid username or password");
+          this.$store.dispatch("loginUser", user).then(
+            response => {
+              this.$notification.config({
+                placement: "bottomRight"
+              });
+
+              this.$notification.open({
+                message: "User Module",
+                description:
+                  "YeahhhhhhhhhhhHH!",
+                icon: <a-icon type="smile" style="color: #108ee9" />
+              });
+
+              this.$router.push("/admin/dasboard");
+            },
+            error => {
+              console.log(error);
+              this.$message.error("Invalid username or password");
+            }
+          );
         }
-      );
+      });
+    },
+    handleLink() {
+      this.$router.push({ name: "client-login" });
     }
   }
 };
 </script>
-

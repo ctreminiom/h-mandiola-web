@@ -5,6 +5,7 @@ import userModule from './module/user'
 import errorModule from './module/errors'
 import consecutiveModule from './module/consecutives'
 import logModule from './module/logs'
+import roleModule from './module/roles'
 
 
 
@@ -17,5 +18,6 @@ export default new Vuex.Store({
     logs: logModule,
     errors: errorModule,
     consecutives: consecutiveModule,
+    roles: roleModule,
   }
 })

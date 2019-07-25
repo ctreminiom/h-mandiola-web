@@ -2,27 +2,15 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './vuex/index'
-
-import Notifications from 'vue-notification'
-import Resource from 'vue-resource' // Setup HTTP requested funcionality
-
-import ShardsVue from 'shards-vue';
-
-import 'bootstrap/dist/css/bootstrap.css';
-import '@/assets/scss/shards-dashboards.scss';
-import '@/assets/scss/date-range.scss';
-
-
+import Resource from 'vue-resource'
 
 import Antd from 'ant-design-vue'
-import 'ant-design-vue/dist/antd.css'
+import 'ant-design-vue/dist/antd.less'
 
 
 Vue.use(Antd)
-
-ShardsVue.install(Vue);
 Vue.use(Resource);
-Vue.use(Notifications)
+
 
 Vue.config.productionTip = false
 
