@@ -11,7 +11,7 @@
         </a-breadcrumb-item>
 
         <a-breadcrumb-item href>
-          <router-link to="/admin/dasboard/security/users">
+          <router-link to="/admin/dashboard/security/users">
             <span>Users</span>
           </router-link>
         </a-breadcrumb-item>

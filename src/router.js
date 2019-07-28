@@ -10,13 +10,7 @@ import AdminUser from './views/admin/security/User'
 import newUser from './views/admin/security/NewUser'
 import ChangePassword from './views/admin/security/ChangePassword'
 import AdminRole from './views/admin/security/Role'
-
-
 import AdminLog from './views/admin/queries/Logs'
-import AdminError from './views/admin/queries/Errors'
-
-
-import ActivityAdmin from './views/admin/administration/Activity'
 
 
 Vue.use(Router)
@@ -28,62 +22,98 @@ export default new Router({
     {
       path: '/',
       name: 'client-login',
-      component: ClientLogin
+      component: ClientLogin,
+      meta: { guest: true }
     },
     {
       path: "/admin/login",
       name: 'admin-login',
-      component: AdminLogin
+      component: AdminLogin,
+      meta: { guest: true }
     },
     {
-      path: "/admin/dasboard",
-      name: 'admin-dashboard',
+      path: "/admin/dashboard",
+      name: "admin-dashboard",
       component: AdminDashboard,
+      meta: { guest: false },
       children: [
         {
-          path: 'security/users',
-          name: 'users',
-          component: AdminUser
+          path: "/admin/dashboard/security/users",
+          name: "admin-dashboard-security",
+          component: AdminUser,
+          meta: { admin: true, security: true }
         },
         {
-          path: 'security/roles',
-          name: 'roles',
-          component: AdminRole
+          path: "/admin/dashboard/security/roles",
+          name: "admin-dashboard-roles",
+          component: AdminRole,
+          meta: { admin: true, security: true }
         },
         {
-          path: 'queries/logs',
-          name: 'logs',
-          component: AdminLog
-        },
-        {
-          path: 'queries/errors',
-          name: 'errors',
-          component: AdminError
-        },
-        {
-          path: 'administration/actities',
-          name: 'admin-activity',
-          component: ActivityAdmin
-        }
-      ]
-    },
-    {
-      path: "/admin/dasboard/security",
-      name: 'dashboard',
-      component: AdminDashboard,
-      children: [
-        {
-          path: 'user/new',
-          name: 'new-user',
+          path: "/admin/dashboard/security/users/new",
+          name: "security-users-new",
           component: newUser,
+          meta: { admin: true, security: true }
         },
         {
-          path: 'user/:id/change/password',
-          name: 'changePassword',
+          path: "/admin/dashboard/security/user/:username/change/password",
+          name: "security-users-change-password",
           component: ChangePassword,
+          meta: { admin: true, security: true },
           props: true
         }
       ]
-    }
+    },
+    {
+      path: "/admin/dashboard/security",
+      name: "admin-dashboard-security",
+      component: AdminDashboard,
+      children: [
+        {
+          path: '/users',
+          name: "security-users",
+          component: AdminUser,
+          meta: { admin: true, security: true }
+        },
+        {
+          path: '/roles',
+          name: "security-roles",
+          component: AdminRole,
+          meta: { admin: true, security: true }
+        },
+        {
+          path: '/users/new',
+          name: "security-users-new",
+          component: newUser,
+          meta: { admin: true, security: true }
+        },
+        {
+          path: '/users/:username/change/password',
+          name: "security-users-change-password",
+          component: ChangePassword,
+          meta: { admin: true, security: true },
+          props: true
+        }
+      ]
+    },
+    {
+      path: "/admin/dashboard/queries",
+      name: "admin-dashboard-queries",
+      children: [
+        {
+          path: '/logs',
+          name: "queries-logs",
+          component: AdminLog,
+          meta: { admin: true, queries: true }
+        },
+        {
+          path: '/errors',
+          name: "queries-errors",
+          component: AdminLog,
+          meta: { admin: true, queries: true }
+        }
+      ]
+
+    },
   ]
 })

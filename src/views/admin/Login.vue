@@ -80,7 +80,7 @@ export default {
                 icon: <a-icon type="smile" style="color: #108ee9" />
               });
 
-              this.$router.push("/admin/dasboard");
+              this.$router.push("/admin/dashboard");
             },
             error => {
               console.log(error);

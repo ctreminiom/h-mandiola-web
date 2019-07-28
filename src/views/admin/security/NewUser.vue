@@ -11,7 +11,7 @@
         </a-breadcrumb-item>
 
         <a-breadcrumb-item href>
-          <router-link to="/admin/dasboard/security/users">
+          <router-link to="/admin/dashboard/security/users">
             <span>Users</span>
           </router-link>
         </a-breadcrumb-item>
@@ -128,7 +128,7 @@ export default {
                 icon: <a-icon type="smile" style="color: #36B37E" />
               });
 
-              this.$router.push("/admin/dasboard/security/users");
+              this.$router.push("/admin/dashboard/security/users");
             },
             error => {
               console.log(error);

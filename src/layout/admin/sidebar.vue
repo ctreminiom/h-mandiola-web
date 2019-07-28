@@ -8,12 +8,12 @@
           <span>Security</span>
         </span>
         <a-menu-item key="3">
-          <router-link to="/admin/dasboard/security/users">
+          <router-link to="/admin/dashboard/security/users">
            <a-icon type="usergroup-delete" />Users
           </router-link>
         </a-menu-item>
         <a-menu-item key="4">
-           <router-link to="/admin/dasboard/security/roles">
+           <router-link to="/admin/dashboard/security/roles">
             <a-icon type="audit" />Roles
           </router-link>
         </a-menu-item>
@@ -29,7 +29,7 @@
           <a-icon type="folder" />Consecutives
         </a-menu-item>
         <a-menu-item key="333">
-           <router-link to="/admin/dasboard/administration/actities">
+           <router-link to="/admin/dashboard/administration/actities">
           <a-icon type="shop" />Activities
           </router-link>
         </a-menu-item>
@@ -51,12 +51,12 @@
         </span>
 
         <a-menu-item key="44">
-          <router-link to="/admin/dasboard/queries/logs">
+          <router-link to="/admin/dashboard/queries/logs">
           <a-icon type="database" />Logs
           </router-link>
         </a-menu-item>
         <a-menu-item key="23">
-          <router-link to="/admin/dasboard/queries/errors">
+          <router-link to="/admin/dashboard/queries/errors">
           <a-icon type="qrcode" />Errors
           </router-link>
         </a-menu-item>

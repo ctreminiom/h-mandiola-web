@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     go() {
-      this.$router.push("/admin/dasboard/security/user/new");
+      this.$router.push("/admin/dashboard/security/users/new");
     },
     handleTableChange() {},
     fetch() {
@@ -127,10 +127,11 @@ export default {
         }
       );
     },
-    goToChangePassword(id, key) {
+    goToChangePassword(id, username) {
+
       this.$router.push({
-        name: "changePassword",
-        params: { id: id, username: key }
+        name: "security-users-change-password",
+        params: { id: id, username: username }
       });
     }
   }
