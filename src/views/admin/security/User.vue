@@ -25,6 +25,14 @@
             </a>
 
             <template slot="action" slot-scope="text, record">
+
+              <a
+                href="javascript:;"
+                @click="goToChangeRoles(record.id ,record.username)"
+              >Roles</a>
+
+              <a-divider type="vertical" />
+
               <a
                 href="javascript:;"
                 @click="goToChangePassword(record.id ,record.username)"
@@ -131,6 +139,13 @@ export default {
 
       this.$router.push({
         name: "security-users-change-password",
+        params: { id: id, username: username }
+      });
+    },
+    goToChangeRoles(id, username) {
+
+      this.$router.push({
+        name: "security-users-change-roles",
         params: { id: id, username: username }
       });
     }

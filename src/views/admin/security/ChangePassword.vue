@@ -100,7 +100,7 @@ export default {
                 icon: <a-icon type="smile" style="color: #108ee9" />
               });
 
-              this.$router.push("/admin/dasboard/security/users");
+              this.$router.push("/admin/dashboard/security/users");
             },
             error => {
               console.log(error);
