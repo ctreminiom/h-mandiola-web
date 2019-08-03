@@ -14,6 +14,7 @@ import ChangeRoles from './views/admin/security/ChangeRoles'
 import AdminRole from './views/admin/security/Role'
 import AdminLog from './views/admin/queries/Logs'
 import AdminError from './views/admin/queries/Errors'
+import AdminRooms from './views/admin/queries/Rooms'
 
 
 Vue.use(Router)
@@ -108,7 +109,16 @@ export default new Router({
             admin: true,
             queries: true
           }
+        },
+        {
+          path: "/admin/dashboard/queries/rooms",
+          name: "queries-rooms",
+          component: AdminRooms,
+          meta: {
+            admin: true,
+            queries: true
         }
+      },
       ]
     },
 
