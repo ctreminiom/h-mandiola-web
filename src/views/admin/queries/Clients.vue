@@ -9,7 +9,7 @@
           <a-icon type="code" />
           <span>Queries</span>
         </a-breadcrumb-item>
-        <a-breadcrumb-item>Rooms Status</a-breadcrumb-item>
+        <a-breadcrumb-item>Active Clients</a-breadcrumb-item>
       </a-breadcrumb>
 
       <br />
@@ -34,15 +34,21 @@ export default {
       dataSource: null,
       columns: [
         {
-          title: "Room Number",
-          dataIndex: "roomnumber",
-          key: "roomnumber"
+          title: "Client ID",
+          dataIndex: "id",
+          key: "id"
         },
         {
-          title: "Status",
+          title: "Customer Name",
+          dataIndex: "status",
+          key: "status"            
+        },
+        {
+          title: "Room Number",
           dataIndex: "status",
           key: "status"
-        }
+        }       
+
       ]
     };
   },
