@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     fetch() {
-      this.$store.dispatch("Rooms").then(
+      this.$store.dispatch("Clients").then(
         response => {
           this.dataSource = response.body;
         },
