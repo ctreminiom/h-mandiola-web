@@ -14,6 +14,26 @@ const actions = {
 
             Vue.http(options).then(response => {
                 context.commit("TOKEN", response.body)
+
+                let options = {
+                    url: "http://35.188.37.134/api/module/user/me",
+                    method: "GET",
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("token")
+                    }
+                }
+
+                Vue.http(options).then(response => {
+                    context.commit("username", response.body["username"])
+                    context.commit("avatar", response.body["username"][0].toUpperCase() + response.body["username"][0].toUpperCase())
+
+                    resolve(response)
+
+                }, error => {
+                    reject(error)
+                })
+
+
                 resolve(response)
             }, error => {
                 reject(error)
@@ -31,14 +51,40 @@ const actions = {
                 url: "http://35.188.37.134/api/module/users",
                 method: "GET",
                 headers: {
-                    Authorization:
-                        "Bearer " + localStorage.getItem("token")
+                    Authorization: "Bearer " + localStorage.getItem("token")
                 }
             }
 
             Vue.http(options).then(response => {
                 context.commit("USERS", response.body)
+
                 resolve(response)
+            }, error => {
+                reject(error)
+            })
+
+        })
+
+    },
+
+    me(context, data) {
+
+        return new Promise((resolve, reject) => {
+
+            let options = {
+                url: "http://35.188.37.134/api/module/user/me",
+                method: "GET",
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            }
+
+            Vue.http(options).then(response => {
+                context.commit("username", response.body["username"])
+                context.commit("avatar", response.body["username"][0].toUpperCase() + response.body["username"][0].toUpperCase())
+
+                resolve(response)
+
             }, error => {
                 reject(error)
             })
@@ -58,8 +104,7 @@ const actions = {
                     username: data
                 },
                 headers: {
-                    Authorization:
-                        "Bearer " + localStorage.getItem("token")
+                    Authorization: "Bearer " + localStorage.getItem("token")
                 }
             }
 
@@ -82,8 +127,7 @@ const actions = {
                 method: "POST",
                 body: data,
                 headers: {
-                    Authorization:
-                        "Bearer " + localStorage.getItem("token")
+                    Authorization: "Bearer " + localStorage.getItem("token")
                 }
             }
 
@@ -110,8 +154,7 @@ const actions = {
                 url: "http://35.188.37.134/api/module/user",
                 method: "DELETE",
                 headers: {
-                    Authorization:
-                        "Bearer " + localStorage.getItem("token")
+                    Authorization: "Bearer " + localStorage.getItem("token")
                 },
                 params: {
                     username: data
@@ -138,8 +181,7 @@ const actions = {
                 method: "PUT",
                 body: data.body,
                 headers: {
-                    Authorization:
-                        "Bearer " + localStorage.getItem("token")
+                    Authorization: "Bearer " + localStorage.getItem("token")
                 },
                 params: {
                     username: data.username

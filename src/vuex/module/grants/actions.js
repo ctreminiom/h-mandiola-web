@@ -6,7 +6,7 @@ const actions = {
         return new Promise((resolve, reject) => {
 
             let options = {
-                url: "http://localhost:5000/api/module/grant",
+                url: "http://35.188.37.134/api/module/grant",
                 method: "POST",
                 body: data,
                 headers: {
@@ -31,7 +31,7 @@ const actions = {
         return new Promise((resolve, reject) => {
 
             let options = {
-                url: "http://localhost:5000/api/module/grant",
+                url: "http://35.188.37.134/api/module/grant",
                 method: "DELETE",
                 body: data.body,
                 headers: {

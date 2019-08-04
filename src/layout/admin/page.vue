@@ -4,11 +4,12 @@
       <a-layout-header style="background: white;">
         <a-dropdown style="float: right">
           <a class="ant-dropdown-link">
-            <a-avatar style="color: #e6f5ff; backgroundColor: #1c2938">CT</a-avatar>ctreminio
+            <a-avatar style="color: #e6f5ff; backgroundColor: #1c2938">{{this.$store.state.user.avatar}}</a-avatar>
+            {{this.$store.state.user.username}}
           </a>
           <a-menu slot="overlay">
             <a-menu-item>
-              <a>Logout</a>
+              <a @click="logout">Logout</a>
             </a-menu-item>
           </a-menu>
         </a-dropdown>
@@ -29,6 +30,22 @@
 
 <script>
 export default {
-  name: "admin-page"
+  name: "admin-page",
+ 
+  methods: {
+    logout() {
+      localStorage.removeItem('token')
+      localStorage.removeItem('username')
+      localStorage.removeItem('avatar')
+      this.$router.push({ name: "admin-login" });
+    }
+  },
+
+  computed: {
+    
+  }
+
+
+  
 };
 </script>

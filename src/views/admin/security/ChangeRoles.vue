@@ -196,10 +196,39 @@ export default {
 
       //right --> remove grant
       if (direction == "right") {
+
+        let dataTest = this.mockData.filter(obj => obj.key == moveKeys[0]);
+
+
+        let roleTest
+        switch (dataTest[0].title) {
+
+          case "Administration":
+            roleTest = "10"
+            break
+
+          case "Consecutive":
+            roleTest = "11"
+            break
+
+          case "Security":
+            roleTest = "12"
+            break
+
+          case "Queries":
+            roleTest = "13"
+            break
+
+          case "Maintenance":
+            roleTest = "14"
+            break
+            
+        }
+
         let data = {
           username: this.username,
           body: {
-            role: moveKeys[0]
+            role: roleTest
           }
         };
 

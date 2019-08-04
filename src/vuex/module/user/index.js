@@ -5,7 +5,9 @@ import mutations from './mutations'
 
 const state = {
     isLoggedIn: !!localStorage.getItem("token"),
-    users: null
+    users: null,
+    username: localStorage.getItem("username"),
+    avatar: localStorage.getItem("avatar")
 }
 
 

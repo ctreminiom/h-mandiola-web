@@ -80,6 +80,8 @@ export default {
                 icon: <a-icon type="smile" style="color: #108ee9" />
               });
 
+              this.$store.dispatch("me", user).then(response => {},error => {});
+
               this.$router.push("/admin/dashboard");
             },
             error => {
