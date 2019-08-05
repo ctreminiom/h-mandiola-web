@@ -29,7 +29,7 @@
           <a-icon type="folder" />Consecutives
         </a-menu-item>
         <a-menu-item key="333">
-           <router-link to="/admin/dashboard/administration/actities">
+           <router-link to="/admin/dashboard/administration/activities">
           <a-icon type="shop" />Activities
           </router-link>
         </a-menu-item>

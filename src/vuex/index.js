@@ -8,6 +8,8 @@ import logModule from './module/logs'
 import roleModule from './module/roles'
 import grantModule from './module/grants'
 
+import activityModule from './module/activities'
+
 
 
 Vue.use(Vuex)
@@ -21,5 +23,6 @@ export default new Vuex.Store({
     consecutives: consecutiveModule,
     roles: roleModule,
     grants: grantModule,
+    activity: activityModule,
   }
 })

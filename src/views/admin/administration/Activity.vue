@@ -15,8 +15,28 @@
       <br />
 
       <a-col :span="24">
-        <a-card title="Roles">
-          <a-table :columns="columns" :dataSource="dataSource"></a-table>
+        <a-card title="Activities">
+          <a-button slot="extra" @click="go" type="primary">New Activity</a-button>
+          <a-table :columns="columns" :dataSource="dataSource">
+            <template slot="action" slot-scope="text, record">
+              <a-popconfirm
+                v-if="dataSource.length"
+                title="Sure to delete?"
+                @confirm="() => onDelete(record.username)"
+              >
+                <a href="javascript:;">Delete</a>
+              </a-popconfirm>
+            </template>
+
+            <img
+              id="carlos"
+              slot="expandedRowRender"
+              slot-scope="record"
+              :src="record.image_path"
+              height="800px"
+              width="800px"
+            />
+          </a-table>
         </a-card>
       </a-col>
     </a-row>
@@ -39,26 +59,40 @@ export default {
           key: "id"
         },
         {
-          title: "Username",
-          dataIndex: "username",
-          key: "username"
+          title: "Consecutive",
+          dataIndex: "consecutive",
+          key: "consecutive"
         },
         {
-          title: "Date",
-          dataIndex: "date",
-          key: "date"
+          title: "Code",
+          dataIndex: "code",
+          key: "code"
         },
         {
-          title: "Detail",
-          dataIndex: "detail",
-          key: "detail"
+          title: "Name",
+          dataIndex: "name",
+          key: "name"
+        },
+        {
+          title: "Description",
+          dataIndex: "description",
+          key: "description"
+        },
+        {
+          title: "Action",
+          dataIndex: "",
+          key: "x",
+          scopedSlots: { customRender: "action" }
         }
       ]
     };
   },
   methods: {
+    go() {
+      this.$router.push("/admin/dashboard/administation/activities/new");
+    },
     fetch() {
-      this.$store.dispatch("Errors").then(
+      this.$store.dispatch("Activities").then(
         response => {
           this.dataSource = response.body;
         },
@@ -67,6 +101,35 @@ export default {
         }
       );
     },
+    onDelete(key) {
+      this.$store.dispatch("deleteUser", key).then(
+        response => {
+          this.$notification.config({
+            placement: "bottomRight",
+            bottom: "50px",
+            duration: 3
+          });
+          this.$notification["info"]({
+            message: "User Module",
+            description: response.body
+          });
+          this.fetch();
+        },
+        error => {
+          this.$notification["error"]({
+            message: "User Module",
+            description: error
+          });
+        }
+      );
+    }
   }
 };
 </script>
+
+
+<style scoped>
+#carlos {
+  margin-left: 200px;
+}
+</style>

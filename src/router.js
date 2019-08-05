@@ -20,6 +20,9 @@ import AdminRole from './views/admin/security/Role'
 import AdminLog from './views/admin/queries/Logs'
 import AdminError from './views/admin/queries/Errors'
 
+import ActivityView from './views/admin/administration/Activity'
+import NewActivityView from './views/admin/administration/NewActivity'
+
 
 Vue.use(Router)
 
@@ -53,7 +56,6 @@ let router = new Router({
       name: "admin-dashboard-security",
       component: AdminUser,
       meta: {
-        admin: true,
         security: true
       }
     },
@@ -72,8 +74,6 @@ let router = new Router({
       name: "security-users-new",
       component: newUser,
       meta: {
-        jwt: true,
-        admin: true,
         security: true
       }
     },
@@ -82,8 +82,6 @@ let router = new Router({
       name: "security-users-change-password",
       component: ChangePassword,
       meta: {
-        jwt: true,
-        admin: true,
         security: true
       },
       props: true
@@ -114,7 +112,17 @@ let router = new Router({
       meta: {
         queries: true
       }
-    }
+    },
+    {
+      path: "/admin/dashboard/administration/activities",
+      name: "administration-activities",
+      component: ActivityView,
+    },
+    {
+      path: "/admin/dashboard/administation/activities/new",
+      name: "administration-activities-new",
+      component: NewActivityView,
+    },
     ]
   },
 

@@ -131,6 +131,8 @@ const actions = {
                 }
             }
 
+            console.log(options)
+
             Vue.http(options).then(response => {
                 resolve(response)
             }, error => {
