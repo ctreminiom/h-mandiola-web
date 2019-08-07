@@ -18,6 +18,56 @@
         <a-card title="Activities">
           <a-button slot="extra" @click="go" type="primary">New Activity</a-button>
           <a-table :columns="columns" :dataSource="dataSource">
+            <!--Search button-->
+            <div
+              slot="filterDropdown"
+              slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
+              class="custom-filter-dropdown"
+            >
+              <a-input
+                v-ant-ref="c => searchInput = c"
+                :placeholder="`Search ${column.dataIndex}`"
+                :value="selectedKeys[0]"
+                @change="e => setSelectedKeys(e.target.value ? [e.target.value] : [])"
+                @pressEnter="() => handleSearch(selectedKeys, confirm)"
+                style="width: 188px; margin-bottom: 8px; display: block;"
+              />
+              <a-button
+                type="primary"
+                @click="() => handleSearch(selectedKeys, confirm)"
+                icon="search"
+                size="small"
+                style="width: 90px; margin-right: 8px"
+              >Search</a-button>
+              <a-button
+                @click="() => handleReset(clearFilters)"
+                size="small"
+                style="width: 90px"
+              >Reset</a-button>
+            </div>
+            <a-icon
+              slot="filterIcon"
+              slot-scope="filtered"
+              type="search"
+              :style="{ color: filtered ? '#108ee9' : undefined }"
+            />
+            <template slot="customRender" slot-scope="text">
+              <span v-if="searchText">
+                <template
+                  v-for="(fragment, i) in text.toString().split(new RegExp(`(?<=${searchText})|(?=${searchText})`, 'i'))"
+                >
+                  <mark
+                    v-if="fragment.toLowerCase() === searchText.toLowerCase()"
+                    :key="i"
+                    class="highlight"
+                  >{{fragment}}</mark>
+                  <template v-else>{{fragment}}</template>
+                </template>
+              </span>
+              <template v-else>{{text}}</template>
+            </template>
+            <!--Search button-->
+
             <template slot="action" slot-scope="text, record">
               <a-popconfirm
                 v-if="dataSource.length"
@@ -52,31 +102,103 @@ export default {
   data() {
     return {
       dataSource: null,
+      searchText: "",
+      searchInput: null,
       columns: [
         {
           title: "ID",
           dataIndex: "id",
-          key: "id"
+          key: "id",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
         },
         {
           title: "Consecutive",
           dataIndex: "consecutive",
-          key: "consecutive"
+          key: "consecutive",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
         },
         {
           title: "Code",
           dataIndex: "code",
-          key: "code"
+          key: "code",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
         },
         {
           title: "Name",
           dataIndex: "name",
-          key: "name"
+          key: "name",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
         },
         {
           title: "Description",
           dataIndex: "description",
-          key: "description"
+          key: "description",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
         },
         {
           title: "Action",
@@ -122,6 +244,16 @@ export default {
           });
         }
       );
+    },
+
+    handleSearch(selectedKeys, confirm) {
+      confirm();
+      this.searchText = selectedKeys[0];
+    },
+
+    handleReset(clearFilters) {
+      clearFilters();
+      this.searchText = "";
     }
   }
 };
