@@ -61,10 +61,14 @@
           </router-link>
         </a-menu-item>
         <a-menu-item key="1312">
+          <router-link to="/admin/dashboard/queries/clients">
           <a-icon type="contacts" />Clients
+          </router-link>
         </a-menu-item>
         <a-menu-item key="768">
+          <router-link to="/admin/dashboard/queries/rooms"> 
           <a-icon type="schedule" />Rooms
+           </router-link>
         </a-menu-item>
       </a-sub-menu>
     </a-menu>
