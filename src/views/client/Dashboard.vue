@@ -1,15 +1,12 @@
 <template>
   <a-layout id="components-layout-demo-fixed">
     <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
-      
       <a-menu
         theme="dark"
         mode="horizontal"
         :defaultSelectedKeys="['2']"
         :style="{ lineHeight: '64px' }"
-      >
-
-      </a-menu>
+      ></a-menu>
     </a-layout-header>
     <a-layout-content :style="{ padding: '0 50px', marginTop: '64px' }">
       <a-breadcrumb :style="{ margin: '16px 0' }"></a-breadcrumb>
@@ -21,24 +18,38 @@
             <a-row :gutter="16">
               <a-col :span="12">
                 <a-card title="Check the Rooms" :bordered="false">
-                  <a-button type="primary" html-type="submit" class="login-form-button" @click="handleCheckRooms">Reserve a room</a-button>
+                  <router-link to="rooms">
+                  
+                    <a-button
+                      type="primary"
+                      html-type="submit"
+                      class="login-form-button"
+                      @click="handleCheckArticles"
+                    >Reserve a room</a-button>
+                  </router-link>
                 </a-card>
               </a-col>
+
               <a-col :span="12">
                 <a-card title="Check the Articles" :bordered="false">
-                  <a-button type="primary" html-type="submit" class="login-form-button" @click="handleCheckArticles">Buy an article</a-button>
+                  <router-link to="/client/dashboard/activities">
+                
+                    <a-button
+                      type="primary"
+                      html-type="submit"
+                      class="login-form-button"
+                      @click="handleCheckArticles"
+                    >Buy an article</a-button>
+                  </router-link>
                 </a-card>
               </a-col>
-           
             </a-row>
           </div>
+          
         </template>
-
       </div>
     </a-layout-content>
-        <a-layout-footer :style="{ textAlign: 'center' }">
-     
-    </a-layout-footer>
+    <a-layout-footer :style="{ textAlign: 'center' }"></a-layout-footer>
   </a-layout>
 </template>
 
@@ -55,18 +66,14 @@
 
 <script>
 export default {
-  beforeCreate() {
-    this.form = this.$form.createForm(this);
-  },
   methods: {
-    handleCheckRooms(){
-      this.$router.push( {name: 'client-rooms'})
+    handleCheckRooms() {
+      this.$router.push({ name: "client-rooms" });
     },
-    handleCheckArticles(){
-       this.$router.push( {name: 'client-article'})
+    handleCheckArticles() {
+      this.$router.push({ name: "client-article" });
     }
   }
 };
-
 </script>
 

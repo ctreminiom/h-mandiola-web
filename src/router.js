@@ -160,9 +160,6 @@ let router = new Router({
     path: "/client/dashboard",
     name: "client-dashboard",
     component: ClientDashboard,
-    meta: {
-      guest: false
-    },
     children: [
       {
         path: "/client/dashboard/rooms",
