@@ -21,12 +21,12 @@
             <a-row :gutter="16">
               <a-col :span="12">
                 <a-card title="Check the Rooms" :bordered="false">
-                  <a-button type="warning" html-type="submit" class="login-form-button" @click="handleCheckRooms">Reserve a room</a-button>
+                  <a-button type="primary" html-type="submit" class="login-form-button" @click="handleCheckRooms">Reserve a room</a-button>
                 </a-card>
               </a-col>
               <a-col :span="12">
                 <a-card title="Check the Articles" :bordered="false">
-                  <a-button type="warning" html-type="submit" class="login-form-button" @click="handleCheckArticles">Buy an article</a-button>
+                  <a-button type="primary" html-type="submit" class="login-form-button" @click="handleCheckArticles">Buy an article</a-button>
                 </a-card>
               </a-col>
            
