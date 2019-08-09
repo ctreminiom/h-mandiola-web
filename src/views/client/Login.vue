@@ -44,13 +44,14 @@
             </a-form-item>
             <a-form-item>
               <a-button block type="primary" html-type="submit" class="login-form-button">Log in</a-button>
+              <a-button block type="secondary" html-type="submit" class="login-form-button" @click="handleSignUp">Sign Up</a-button>
             </a-form-item>
           </a-form>
 
           <template class="ant-card-actions" slot="actions">
             <a-icon type="facebook" :style="{ color: '#3b5998' }" />
-            <a-icon type="google" :style="{ color: '#DB4437' }" />
-            <a-icon type="github" :style="{ color: '#333' }" />
+            <a-icon type="twitter" :style="{ color: '#DB4437' }" />
+        
           </template>
         </a-card>
       </a-col>
@@ -69,11 +70,43 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
+          let user = {
+            username: this.form.fieldsStore.fields.userName["value"], //Check
+            password: this.form.fieldsStore.fields.password["value"] //Check
+          };
+
+          this.$store.dispatch("loginUser", user).then(
+            response => {
+              this.$notification.config({
+                placement: "bottomRight"
+              });
+
+              this.$notification.open({
+                message: "User Module",
+                description:
+                  "Thanks for creating the users",
+                icon: <a-icon type="smile" style="color: #108ee9" />
+              });
+
+              this.$store.dispatch("me", user).then(response => {},error => {});
+
+              this.$router.push("/client/dashboard");
+            },
+            error => {
+              console.log(error);
+              this.$message.error("Invalid username or password");
+            }
+          );
         }
       });
     },
+   
+
     handleLink() {
       this.$router.push({ name: 'admin-login'})
+    },
+    handleSignUp(){
+      this.$router.push( {name: 'Sign-Up'})
     }
   }
 };

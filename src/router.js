@@ -26,6 +26,11 @@ import ActivityView from './views/admin/administration/Activity'
 import NewActivityView from './views/admin/administration/NewActivity'
 
 
+import ClientSignUp from './views/client/SignUp'
+import ClientDashboard from './views/client/Dashboard'
+import CLientRooms from './views/client/Rooms'
+//import CLientArticle from './views/client/Article'
+
 Vue.use(Router)
 
 let router = new Router({
@@ -35,6 +40,11 @@ let router = new Router({
     path: '/',
     name: 'client-login',
     component: ClientLogin,
+  },
+  {
+    path: "/client/signup",
+    name: 'Sign-Up',
+    component: ClientSignUp,
   },
   {
     path: "/admin/login",
@@ -145,6 +155,25 @@ let router = new Router({
     },
     ]
   },
+
+  {
+    path: "/client/dashboard",
+    name: "client-dashboard",
+    component: ClientDashboard,
+    meta: {
+      guest: false
+    },
+    children: [{
+      path: "/client/dashboard/rooms",
+      name: "client-rooms",
+      component: CLientRooms,
+      meta: {
+        security: true
+      }
+
+    }]
+  },
+  
 
   ]
 

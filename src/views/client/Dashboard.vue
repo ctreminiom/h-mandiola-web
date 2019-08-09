@@ -1,31 +1,50 @@
 <template>
-  <a-layout id="components-layout-demo-top" class="layout">
-    <a-layout-header>
-      <div class="logo" />
+  <a-layout id="components-layout-demo-fixed">
+    <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
+      
       <a-menu
         theme="dark"
         mode="horizontal"
         :defaultSelectedKeys="['2']"
         :style="{ lineHeight: '64px' }"
       >
-        <a-menu-item key="1">nav 1</a-menu-item>
-        <a-menu-item key="2">nav 2</a-menu-item>
-        <a-menu-item key="3">nav 3</a-menu-item>
+
       </a-menu>
     </a-layout-header>
-    <a-layout-content style="padding: 0 50px">
-      <a-breadcrumb style="margin: 16px 0">
-        <a-breadcrumb-item>Home</a-breadcrumb-item>
-        <a-breadcrumb-item>List</a-breadcrumb-item>
-        <a-breadcrumb-item>App</a-breadcrumb-item>
-      </a-breadcrumb>
-      <div :style="{ background: '#fff', padding: '24px', minHeight: '280px' }">Content</div>
+    <a-layout-content :style="{ padding: '0 50px', marginTop: '64px' }">
+      <a-breadcrumb :style="{ margin: '16px 0' }"></a-breadcrumb>
+      <div :style="{ background: '#fff', padding: '24px', minHeight: '500px' }">
+        <h1>Please select one of the options</h1>
+
+        <template>
+          <div style="background-color: #ececec; padding: 20px;">
+            <a-row :gutter="16">
+              <a-col :span="12">
+                <a-card title="Check the Rooms" :bordered="false">
+                  <a-button type="warning" html-type="submit" class="login-form-button" @click="handleCheckRooms">Reserve a room</a-button>
+                </a-card>
+              </a-col>
+              <a-col :span="12">
+                <a-card title="Check the Articles" :bordered="false">
+                  <a-button type="warning" html-type="submit" class="login-form-button" @click="handleCheckArticles">Buy an article</a-button>
+                </a-card>
+              </a-col>
+           
+            </a-row>
+          </div>
+        </template>
+
+      </div>
     </a-layout-content>
-    <a-layout-footer style="text-align: center">Ant Design ©2018 Created by Ant UED</a-layout-footer>
+        <a-layout-footer :style="{ textAlign: 'center' }">
+     
+    </a-layout-footer>
   </a-layout>
 </template>
+
+
 <style>
-#components-layout-demo-top .logo {
+#components-layout-demo-fixed .logo {
   width: 120px;
   height: 31px;
   background: rgba(255, 255, 255, 0.2);
@@ -33,4 +52,21 @@
   float: left;
 }
 </style>
+
+<script>
+export default {
+  beforeCreate() {
+    this.form = this.$form.createForm(this);
+  },
+  methods: {
+    handleCheckRooms(){
+      this.$router.push( {name: 'client-rooms'})
+    },
+    handleCheckArticles(){
+       this.$router.push( {name: 'client-article'})
+    }
+  }
+};
+
+</script>
 
