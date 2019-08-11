@@ -34,7 +34,9 @@
           </router-link>
         </a-menu-item>
         <a-menu-item key="7">
+          <router-link to="/admin/dashboard/administration/rooms">
           <a-icon type="home" />Rooms
+          </router-link>
         </a-menu-item>
         <a-menu-item key="8">
           <a-icon type="shopping-cart" />Products
