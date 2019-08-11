@@ -21,7 +21,11 @@ import AdminLog from './views/admin/queries/Logs'
 import AdminError from './views/admin/queries/Errors'
 
 import ActivityView from './views/admin/administration/Activity'
+import RoomView from './views/admin/administration/Rooms'
+
 import NewActivityView from './views/admin/administration/NewActivity'
+import NewRoomView from './views/admin/administration/NewRoom'
+
 
 
 Vue.use(Router)
@@ -122,6 +126,16 @@ let router = new Router({
       path: "/admin/dashboard/administation/activities/new",
       name: "administration-activities-new",
       component: NewActivityView,
+    },
+    {
+      path: "/admin/dashboard/administration/rooms",
+      name: "administration-rooms",
+      component: RoomView,
+    },
+    {
+      path: "/admin/dashboard/administation/rooms/new",
+      name: "administration-rooms-new",
+      component: NewRoomView,
     },
     ]
   },
