@@ -1,30 +1,113 @@
 <template>
-  <div class="about">
-    <d-container class="dr-example-container">
-      <d-row>
-        <d-col cols="12" md="4" lg="6" offset-lg="3">
-          <d-card>
-            <d-card-body align="left" title="Admin">
-              <d-form inline class="login-form">
-                <label class="sr-only" for="f1_Username">Username</label>
-                <d-input id="f1_Username" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Username" />
 
-                <label class="sr-only" for="f1_Password">Password</label>
-                <d-input id="f2_Password" class="mr-2" type="password" placeholder="Password" />
+  <div>
+    <a-menu v-model="current" mode="horizontal">
+      <a-menu-item key="mail" @click="handleLink">
+        <a-icon type="mail" />Admin
+      </a-menu-item>
+    </a-menu>
 
-                <d-button theme="secondary">Login</d-button>
-              </d-form>
-            </d-card-body>
-          </d-card>
-        </d-col>
-      </d-row>
-    </d-container>
+    <br />
+
+    <a-row>
+      <a-col :span="12" :offset="8">
+        <br />
+        <a-card hoverable style="width: 500px">
+          <a-form
+            id="components-form-demo-normal-login"
+            :form="form"
+            class="login-form"
+            @submit="handleSubmit"
+          >
+            <a-form-item>
+              <a-input
+                v-decorator="[
+          'userName',
+          { rules: [{ required: true, message: 'Please input your username!' }] }
+        ]"
+                placeholder="Username"
+              >
+                <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
+              </a-input>
+            </a-form-item>
+            <a-form-item>
+              <a-input
+                v-decorator="[
+          'password',
+          { rules: [{ required: true, message: 'Please input your Password!' }] }
+        ]"
+                type="password"
+                placeholder="Password"
+              >
+                <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+              </a-input>
+            </a-form-item>
+            <a-form-item>
+              <a-button block type="primary" html-type="submit" class="login-form-button">Log in</a-button>
+              <a-button block type="secondary" html-type="submit" class="login-form-button" @click="handleSignUp">Sign Up</a-button>
+            </a-form-item>
+          </a-form>
+
+          <template class="ant-card-actions" slot="actions">
+            <a-icon type="facebook" :style="{ color: '#3b5998' }" />
+            <a-icon type="twitter" :style="{ color: '#DB4437' }" />
+        
+          </template>
+        </a-card>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
-<style scoped>
-.login-form {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-</style>
+<script>
+/* eslint-disable */
+export default {
+  beforeCreate() {
+    this.form = this.$form.createForm(this);
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          let user = {
+            username: this.form.fieldsStore.fields.userName["value"], //Check
+            password: this.form.fieldsStore.fields.password["value"] //Check
+          };
+
+          this.$store.dispatch("loginUser", user).then(
+            response => {
+              this.$notification.config({
+                placement: "bottomRight"
+              });
+
+              this.$notification.open({
+                message: "User Module",
+                description:
+                  "Thanks for creating the users",
+                icon: <a-icon type="smile" style="color: #108ee9" />
+              });
+
+              this.$store.dispatch("me", user).then(response => {},error => {});
+
+              this.$router.push("/client/dashboard");
+            },
+            error => {
+              console.log(error);
+              this.$message.error("Invalid username or password");
+            }
+          );
+        }
+      });
+    },
+   
+
+    handleLink() {
+      this.$router.push({ name: 'admin-login'})
+    },
+    handleSignUp(){
+      this.$router.push( {name: 'Sign-Up'})
+    }
+  }
+};
+</script>
