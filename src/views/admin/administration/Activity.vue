@@ -72,7 +72,7 @@
               <a-popconfirm
                 v-if="dataSource.length"
                 title="Sure to delete?"
-                @confirm="() => onDelete(record.username)"
+                @confirm="() => onDelete(record.id)"
               >
                 <a href="javascript:;">Delete</a>
               </a-popconfirm>
@@ -224,7 +224,7 @@ export default {
       );
     },
     onDelete(key) {
-      this.$store.dispatch("deleteUser", key).then(
+      this.$store.dispatch("deleteActivity", key).then(
         response => {
           this.$notification.config({
             placement: "bottomRight",
