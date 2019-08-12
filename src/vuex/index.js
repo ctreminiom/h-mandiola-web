@@ -11,6 +11,8 @@ import grantModule from './module/grants'
 import activityModule from './module/activities'
 import roomModule from './module/rooms'
 
+import productModule from './module/product'
+
 
 
 Vue.use(Vuex)
@@ -26,5 +28,6 @@ export default new Vuex.Store({
     grants: grantModule,
     activity: activityModule,
     rooms: roomModule,
+    products: productModule,
   }
 })
