@@ -28,6 +28,9 @@ import RoomView from './views/admin/administration/Rooms'
 import NewActivityView from './views/admin/administration/NewActivity'
 import NewRoomView from './views/admin/administration/NewRoom'
 
+import ProductView from './views/admin/administration/Product'
+import NewProductView from './views/admin/administration/NewProduct'
+
 
 
 import ClientSignUp from './views/client/SignUp'
@@ -163,10 +166,20 @@ let router = new Router({
       component: RoomView,
     },
     {
-      path: "/admin/dashboard/administation/rooms/new",
+      path: "/admin/dashboard/administration/rooms/new",
       name: "administration-rooms-new",
       component: NewRoomView,
     },
+    {
+      path: "/admin/dashboard/administration/products",
+      name: "administration-products",
+      component: ProductView,
+    },
+    {
+      path: "/admin/dashboard/administration/products/new",
+      name: "administration-products-new",
+      component: NewProductView,
+    }
     ]
   },
 

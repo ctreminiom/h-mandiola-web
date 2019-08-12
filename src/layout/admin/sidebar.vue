@@ -39,7 +39,9 @@
           </router-link>
         </a-menu-item>
         <a-menu-item key="8">
+          <router-link to="/admin/dashboard/administration/products">
           <a-icon type="shopping-cart" />Products
+          </router-link>
         </a-menu-item>
         <a-menu-item key="9">
           <a-icon type="cloud" />Clients

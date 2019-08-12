@@ -69,6 +69,31 @@ const actions = {
         })
 
     },
+    deleteRoom(context, id) {
+
+        return new Promise((resolve, reject) => {
+
+            let options = {
+                url: "http://35.188.37.134/api/module/room",
+                method: "DELETE",
+                headers: {
+                    Authorization:
+                        "Bearer " + localStorage.getItem("token")
+                },
+                params: {
+                    id: id
+                }
+            }
+
+            Vue.http(options).then(response => {
+                resolve(response)
+            }, error => {
+                reject(error)
+            })
+
+        })
+
+    }
 
 }
 

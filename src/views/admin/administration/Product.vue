@@ -9,14 +9,14 @@
           <a-icon type="dot-chart" />
           <span>Administration</span>
         </a-breadcrumb-item>
-        <a-breadcrumb-item>Activities</a-breadcrumb-item>
+        <a-breadcrumb-item>Products</a-breadcrumb-item>
       </a-breadcrumb>
 
       <br />
 
       <a-col :span="24">
-        <a-card title="Activities">
-          <a-button slot="extra" @click="go" type="primary">New Activity</a-button>
+        <a-card title="Products">
+          <a-button slot="extra" @click="go" type="primary">New Product</a-button>
           <a-table :columns="columns" :dataSource="dataSource">
             <!--Search button-->
             <div
@@ -78,14 +78,7 @@
               </a-popconfirm>
             </template>
 
-            <img
-              id="carlos"
-              slot="expandedRowRender"
-              slot-scope="record"
-              :src="record.image_path"
-              height="800px"
-              width="800px"
-            />
+            
           </a-table>
         </a-card>
       </a-col>
@@ -145,8 +138,8 @@ export default {
         },
         {
           title: "Code",
-          dataIndex: "code",
-          key: "code",
+          dataIndex: "consecutive_num",
+          key: "consecutive_num",
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon",
@@ -201,6 +194,63 @@ export default {
           }
         },
         {
+          title: "Type",
+          dataIndex: "product_type_name",
+          key: "product_type_name",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "Price",
+          dataIndex: "price",
+          key: "price",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "Inventory",
+          dataIndex: "inventory",
+          key: "inventory",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
           title: "Action",
           dataIndex: "",
           key: "x",
@@ -211,10 +261,10 @@ export default {
   },
   methods: {
     go() {
-      this.$router.push("/admin/dashboard/administation/activities/new");
+      this.$router.push("/admin/dashboard/administration/products/new");
     },
     fetch() {
-      this.$store.dispatch("Activities").then(
+      this.$store.dispatch("Products").then(
         response => {
           this.dataSource = response.body;
         },
@@ -224,7 +274,7 @@ export default {
       );
     },
     onDelete(key) {
-      this.$store.dispatch("deleteActivity", key).then(
+      this.$store.dispatch("deleteProduct", key).then(
         response => {
           this.$notification.config({
             placement: "bottomRight",

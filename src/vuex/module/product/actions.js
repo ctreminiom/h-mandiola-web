@@ -2,11 +2,11 @@ import Vue from 'vue'
 
 const actions = {
 
-    Activities(context) {
+    Products() {
         return new Promise((resolve, reject) => {
 
             let options = {
-                url: "http://35.188.37.134/api/module/activities",
+                url: "http://35.188.37.134/api/module/products",
                 method: "GET",
                 headers: {
                     Authorization:
@@ -15,7 +15,6 @@ const actions = {
             }
 
             Vue.http(options).then(response => {
-                context.commit("Activities", response.body)
                 resolve(response)
             }, error => {
                 reject(error)
@@ -24,12 +23,12 @@ const actions = {
         })
 
     },
-    createActivity(context, data) {
+    createProduct(context, data) {
 
         return new Promise((resolve, reject) => {
 
             let options = {
-                url: "http://35.188.37.134/api/module/activity",
+                url: "http://35.188.37.134/api/module/product",
                 method: "POST",
                 body: data,
                 headers: {
@@ -46,12 +45,12 @@ const actions = {
         })
 
     },
-    deleteActivity(context, id) {
+    deleteProduct(context, id) {
 
         return new Promise((resolve, reject) => {
 
             let options = {
-                url: "http://35.188.37.134/api/module/activity",
+                url: "http://35.188.37.134/api/module/product",
                 method: "DELETE",
                 headers: {
                     Authorization:
