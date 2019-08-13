@@ -99,7 +99,7 @@ export default {
   },
   methods: {
     go() {
-      this.$router.push("/admin/dashboard/administation/rooms/new");
+      this.$router.push("/admin/dashboard/administration/rooms/new");
     },
     fetch() {
       this.$store.dispatch("Rooms").then(

@@ -85,8 +85,8 @@ export default {
       columns: [
         {
           title: "Room Number",
-          dataIndex: "roomnumber", //Check the name
-          key: "roomnumber", //Check the name
+          dataIndex: "id", //Check the name
+          key: "id", //Check the name
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon",
@@ -103,9 +103,9 @@ export default {
           }
         },
         {
-          title: "Status",
-          dataIndex: "status", //Check the name
-          key: "status", //Check the name
+          title: "Available",
+          dataIndex: "available", //Check the name
+          key: "available", //Check the name
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon",

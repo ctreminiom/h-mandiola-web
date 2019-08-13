@@ -7,12 +7,12 @@
         </a-breadcrumb-item>
         <a-breadcrumb-item href>
           <a-icon type="safety" />
-          <span>Security</span>
+          <span>Administration</span>
         </a-breadcrumb-item>
 
         <a-breadcrumb-item href>
           <router-link to="/admin/dashboard/security/users">
-            <span>Users</span>
+            <span>Room</span>
           </router-link>
         </a-breadcrumb-item>
 
@@ -22,7 +22,7 @@
       <br />
 
       <a-col :span="24">
-        <a-card title="New User">
+        <a-card title="New Room">
           <a-row>
             <a-col :span="20" :offset="2">
               <a-card hoverable style>
