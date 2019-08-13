@@ -17,7 +17,7 @@
       <br />
 
       <a-col :span="24">
-        <a-card title="Roles">
+        <a-card title="Articles">
           <a-table :columns="columns" :dataSource="dataSource">
             <div
               slot="filterDropdown"
@@ -89,9 +89,9 @@ export default {
       searchInput: null,
       columns: [
         {
-          title: "Room Number",
-          dataIndex: "roomnumber", //Check the name
-          key: "roomnumber", //Check the name
+          title: "ID",
+          dataIndex: "id",
+          key: "id",
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon",
@@ -108,9 +108,9 @@ export default {
           }
         },
         {
-          title: "Status",
-          dataIndex: "status", //Check the name
-          key: "status", //Check the name
+          title: "Consecutive",
+          dataIndex: "consecutive",
+          key: "consecutive",
           scopedSlots: {
             filterDropdown: "filterDropdown",
             filterIcon: "filterIcon",
@@ -125,13 +125,133 @@ export default {
               }, 0);
             }
           }
+        },
+        {
+          title: "Code",
+          dataIndex: "consecutive_num",
+          key: "consecutive_num",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "Name",
+          dataIndex: "name",
+          key: "name",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "Description",
+          dataIndex: "description",
+          key: "description",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "Type",
+          dataIndex: "product_type_name",
+          key: "product_type_name",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "Price",
+          dataIndex: "price",
+          key: "price",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "Inventory",
+          dataIndex: "inventory",
+          key: "inventory",
+          scopedSlots: {
+            filterDropdown: "filterDropdown",
+            filterIcon: "filterIcon",
+            customRender: "customRender"
+          },
+          onFilter: (value, record) =>
+            record.name.toLowerCase().includes(value.toLowerCase()),
+          onFilterDropdownVisibleChange: visible => {
+            if (visible) {
+              setTimeout(() => {
+                this.searchInput.focus();
+              }, 0);
+            }
+          }
+        },
+        {
+          title: "Action",
+          dataIndex: "",
+          key: "x",
+          scopedSlots: { customRender: "action" }
         }
       ]
     };
   },
   methods: {
     fetch() {
-      this.$store.dispatch("Rooms").then(
+      this.$store.dispatch("Products").then(
         response => {
           this.dataSource = response.body;
         },
