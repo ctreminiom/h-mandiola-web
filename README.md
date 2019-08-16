@@ -1,4 +1,4 @@
-# h-mandiola-web
+# app
 
 ## Project setup
 ```
