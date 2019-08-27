@@ -3,7 +3,6 @@
     <a-layout-sider collapsible v-model="collapsed">
       <div class="logo" />
       <a-menu theme="dark" :defaultSelectedKeys="['1']" mode="inline">
-
         <a-menu-item key="1">
           <router-link to="/client/dashboard/rooms">
             <a-icon type="home" />
@@ -21,11 +20,10 @@
     </a-layout-sider>
 
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0" >
+      <a-layout-header style="background: #fff; padding: 0">
         <a-dropdown style="float: right">
           <a class="ant-dropdown-link">
             <a-avatar style="color: #e6f5ff; backgroundColor: #1c2938"></a-avatar>
-        
           </a>
           <a-menu slot="overlay">
             <a-menu-item>
@@ -33,31 +31,40 @@
             </a-menu-item>
             <a-menu-item>
               <a @click="Checkout">Checkout</a>
-              </a-menu-item>
+            </a-menu-item>
           </a-menu>
         </a-dropdown>
-
       </a-layout-header>
       <a-layout-content style="margin: 0 16px">
         <a-breadcrumb style="margin: 16px 0"></a-breadcrumb>
-        <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">Render box</div>
+        <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
+          <datetime v-model="date"></datetime>
+
+          <br />
+
+
+  
+        </div>
       </a-layout-content>
       <a-layout-footer style="text-align: center"></a-layout-footer>
     </a-layout>
   </a-layout>
 </template>
 <script>
+
 export default {
+ 
   data() {
     return {
-      collapsed: false
+      collapsed: false,
+      date: ""
     };
   },
-    methods: {
+  methods: {
     logout() {
-      localStorage.removeItem('token')
-      localStorage.removeItem('username')
-      localStorage.removeItem('avatar')
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      localStorage.removeItem("avatar");
       this.$router.push({ name: "admin-login" });
     }
   }
