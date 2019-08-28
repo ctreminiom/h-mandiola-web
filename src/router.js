@@ -25,6 +25,10 @@ import AdminErrors from './views/admin/errors'
 import AdminClients from './views/admin/client'
 
 import CLientRooms from './views/client/room/Rooms'
+import ClientDates from './views/client/room/Dates'
+import ClientCheckout from './views/client/room/Checkout'
+
+
 import CLientArticle from './views/client/article/Article'
 
 
@@ -34,109 +38,121 @@ const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [{
-            path: '/',
-            name: 'home',
-            component: Home
+        path: '/',
+        name: 'home',
+        component: Home
+    },
+    {
+        path: "/callback",
+        name: "callback",
+        component: Callback
+    },
+    {
+        path: "/client/dashboard",
+        name: 'client-dashboard',
+        component: ClientDashboard,
+        children: [{
+            path: "/client/dashboard/rooms",
+            name: "client-rooms",
+            component: CLientRooms,
         },
         {
-            path: "/callback",
-            name: "callback",
-            component: Callback
+            path: "/client/dashboard/activities",
+            name: "client-article",
+            component: CLientArticle,
         },
         {
-            path: "/client/dashboard",
-            name: 'client-dashboard',
-            component: ClientDashboard,
-            children: [{
-                    path: "/client/dashboard/rooms",
-                    name: "client-rooms",
-                    component: CLientRooms,
-                },
-                {
-                    path: "/client/dashboard/activities",
-                    name: "client-article",
-                    component: CLientArticle,
-                }
-            ]
+            path: "/client/dashboard/rooms/dates",
+            name: "dates-room",
+            component: ClientDates,
+            props: true
         },
         {
-            path: "/admin/dashboard",
-            name: 'admin-dashboard',
-            component: AdminDashboard,
-            children: [{
-                    path: "/admin/dashboard/users",
-                    name: "admin-user",
-                    component: AdminUser,
-                },
-                {
-                    path: "/admin/dashboard/user/:username/change/password",
-                    name: "admin-user-password",
-                    component: AdminUserPassword,
-                    props: true
-                },
-                {
-                    path: "/admin/dashboard/user/new",
-                    name: "admin-user-new",
-                    component: AdminNewUser,
-                },
-                {
-                    path: "/admin/dashboard/user/:username/grants",
-                    name: "admin-user-grant",
-                    component: AdminGrant,
-                    props: true
-                },
-                {
-                    path: "/admin/dashboard/consecutives",
-                    name: "admin-consecutives",
-                    component: AdminConsecutive,
-                },
-                {
-                    path: "/admin/dashboard/activities",
-                    name: "admin-activities",
-                    component: AdminActivity,
-                },
-                {
-                    path: "/admin/dashboard/activity/new",
-                    name: "admin-activities-new",
-                    component: AdminNewActivity,
-                },
-                {
-                    path: "/admin/dashboard/rooms",
-                    name: "admin-rooms",
-                    component: AdminRoom,
-                },
-                {
-                    path: "/admin/dashboard/room/new",
-                    name: "admin-rooms-new",
-                    component: AdminNewRoom,
-                },
-                {
-                    path: "/admin/dashboard/products",
-                    name: "admin-products",
-                    component: AdminProduct,
-                },
-                {
-                    path: "/admin/dashboard/product/new",
-                    name: "admin-product-new",
-                    component: AdminNewProduct,
-                },
-                {
-                    path: "/admin/dashboard/logs",
-                    name: "admin-logs",
-                    component: AdminLogs,
-                },
-                {
-                    path: "/admin/dashboard/errors",
-                    name: "admin-errors",
-                    component: AdminErrors,
-                },
-                {
-                    path: "/admin/dashboard/clients",
-                    name: "admin-clients",
-                    component: AdminClients,
-                },
-            ]
+            path: "/client/dashboard/rooms/dates/checkout",
+            name: "dates-checkout",
+            component: ClientCheckout,
+            props: true
         }
+        ]
+    },
+    {
+        path: "/admin/dashboard",
+        name: 'admin-dashboard',
+        component: AdminDashboard,
+        children: [{
+            path: "/admin/dashboard/users",
+            name: "admin-user",
+            component: AdminUser,
+        },
+        {
+            path: "/admin/dashboard/user/:username/change/password",
+            name: "admin-user-password",
+            component: AdminUserPassword,
+            props: true
+        },
+        {
+            path: "/admin/dashboard/user/new",
+            name: "admin-user-new",
+            component: AdminNewUser,
+        },
+        {
+            path: "/admin/dashboard/user/:username/grants",
+            name: "admin-user-grant",
+            component: AdminGrant,
+            props: true
+        },
+        {
+            path: "/admin/dashboard/consecutives",
+            name: "admin-consecutives",
+            component: AdminConsecutive,
+        },
+        {
+            path: "/admin/dashboard/activities",
+            name: "admin-activities",
+            component: AdminActivity,
+        },
+        {
+            path: "/admin/dashboard/activity/new",
+            name: "admin-activities-new",
+            component: AdminNewActivity,
+        },
+        {
+            path: "/admin/dashboard/rooms",
+            name: "admin-rooms",
+            component: AdminRoom,
+        },
+        {
+            path: "/admin/dashboard/room/new",
+            name: "admin-rooms-new",
+            component: AdminNewRoom,
+        },
+        {
+            path: "/admin/dashboard/products",
+            name: "admin-products",
+            component: AdminProduct,
+        },
+        {
+            path: "/admin/dashboard/product/new",
+            name: "admin-product-new",
+            component: AdminNewProduct,
+        },
+        {
+            path: "/admin/dashboard/logs",
+            name: "admin-logs",
+            component: AdminLogs,
+        },
+        {
+            path: "/admin/dashboard/errors",
+            name: "admin-errors",
+            component: AdminErrors,
+        },
+        {
+            path: "/admin/dashboard/clients",
+            name: "admin-clients",
+            component: AdminClients,
+        },
+        ]
+    }
 
     ]
 })

@@ -298,6 +298,25 @@ export default new Vuex.Store({
       })
     },
 
+    getPublicRooms(context) {
+      return new Promise((resolve, reject) => {
+
+        let options = { url: `http://35.188.37.134:8000/public/module/rooms`, method: "GET" }
+
+        Axios(options)
+          .then(response => {
+            resolve(response.data.message)
+          })
+          .catch(err => {
+            console.log(err)
+            reject(err.data.message)
+          })
+
+
+
+      })
+    },
+
     createRoom(context, data) {
       return new Promise((resolve, reject) => {
 

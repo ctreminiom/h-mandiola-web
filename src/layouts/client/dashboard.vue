@@ -30,7 +30,7 @@
               <a @click="logout">Logout</a>
             </a-menu-item>
             <a-menu-item>
-              <a @click="Checkout">Checkout</a>
+              <a>Checkout</a>
             </a-menu-item>
           </a-menu>
         </a-dropdown>
@@ -38,12 +38,10 @@
       <a-layout-content style="margin: 0 16px">
         <a-breadcrumb style="margin: 16px 0"></a-breadcrumb>
         <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
-          <datetime v-model="date"></datetime>
-
-          <br />
-
-
-  
+          <div>
+            <router-view />
+            <router-view name="helper" />
+          </div>
         </div>
       </a-layout-content>
       <a-layout-footer style="text-align: center"></a-layout-footer>
@@ -51,13 +49,11 @@
   </a-layout>
 </template>
 <script>
-
 export default {
- 
   data() {
     return {
       collapsed: false,
-      date: ""
+      range: ["01/09/2018", "01/10/2018"]
     };
   },
   methods: {
@@ -70,11 +66,3 @@ export default {
   }
 };
 </script>
-
-<style>
-#components-layout-demo-side .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
-}
-</style>

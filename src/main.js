@@ -37,6 +37,11 @@ Vue.use(VeeValidate);
 
 Vue.use(Resource);
 
+import DateRangePicker from "@gravitano/vue-date-range-picker";
+ 
+// use the plugin
+Vue.use(DateRangePicker);
+
 
 Vue.http.interceptors.push((request, next) => {
   request.headers['Authorization'] = "Bearer " + localStorage.getItem("token")
