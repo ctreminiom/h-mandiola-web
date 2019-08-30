@@ -37,6 +37,7 @@ import RoomsClient from './views/client/Rooms'
 import DateClient from './views/client/Date'
 import CheckoutPayment from './views/client/Checkout'
 import CreditCardsClient from './views/client/CreditCards'
+import NewCreditCard from './views/client/NewCreditCard'
 
 
 import Callback from "./components/Callback.vue";
@@ -250,7 +251,12 @@ const router = new Router({
           path: "/admin/client/credit/cards",
           name: "client-credit-cards",
           component: CreditCardsClient
-        }
+        },
+          {
+            path: "/admin/client/credit/card/new",
+            name: "client-new-credit-card",
+            component: NewCreditCard
+          }
       ]
 
     }

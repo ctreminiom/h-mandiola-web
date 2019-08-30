@@ -186,7 +186,28 @@ export default new Vuex.Store({
 
       return new Promise((resolve, reject) => {
 
-        let options = { url: `http://5.188.37.134:7000/module/card/pay`, method: "POST", data: data}
+        let options = { url: `http://35.188.37.134:7000/module/card/pay`, method: "POST", data: data}
+
+        Axios(options)
+          .then(response => {
+            console.log(response)
+            resolve(response.data.message)
+          })
+          .catch(err => {
+            console.log(err.error)
+            reject(err.error)
+          })
+
+
+
+      })
+
+    },
+    addCard(context, data) {
+
+      return new Promise((resolve, reject) => {
+
+        let options = { url: `http://35.188.37.134:7000/module/card`, method: "POST", data: data}
 
         Axios(options)
           .then(response => {

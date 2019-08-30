@@ -1,7 +1,7 @@
 <template>
   <div class="gutter-example">
     <a-row :gutter="16">
-      <a-button type="primary" block>Add credit card</a-button>
+      <a-button type="primary" block @click="go()">Add credit card</a-button>
       <br />
       <br />
       <br />
@@ -57,10 +57,9 @@ export default {
         }
       );
     },
-    go(ID, Number) {
+    go() {
       this.$router.push({
-        name: "rooms-dates",
-        params: { id: ID, number: Number }
+        name: "client-new-credit-card",
       });
     },
     checkCard() {
