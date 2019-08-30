@@ -39,6 +39,11 @@
 
 
 <script>
+import Moment from "moment";
+import { extendMoment } from "moment-range";
+
+const moment = extendMoment(Moment);
+
 export default {
   props: ["id", "number"],
 
@@ -64,14 +69,24 @@ export default {
           for (let item of this.dataSource) {
             console.log(item.Room);
             if (item.Room == this.number) {
-              var minDate = new Date(item.StartDate);
-              var maxDate = new Date(item.EndDate);
+              var start = moment(item.StartDate, "DD/MM/YYYY");
+              var end = moment(item.EndDate, "DD/MM/YYYY");
 
-              var actualStartDate = new Date(this.range[0]);
-              var actualEndDate = new Date(this.range[1]);
+              var ActualStart = moment(this.range[0], "DD/MM/YYYY");
+              var ActualEnd = moment(this.range[1], "DD/MM/YYYY");
 
-              if (actualStartDate > minDate && actualEndDate > maxDate) {
-                this.$message.error("There's a reservation with that dates");
+              var isAvailable = moment.range(start, end);
+
+              var range = moment.range(ActualStart, ActualEnd);
+              var diff = range.diff("days");
+
+              if (
+                isAvailable.contains(ActualStart) ||
+                isAvailable.contains(ActualEnd)
+              ) {
+                this.$message.error(
+                  "There's a reservation between those dates"
+                );
               } else {
                 this.$router.push({
                   name: "dates-checkout",
@@ -80,7 +95,8 @@ export default {
                     startDate: this.range[0],
                     endDate: this.range[1],
                     adults: this.adults,
-                    children: this.children
+                    children: this.children,
+                    days: diff
                   }
                 });
               }

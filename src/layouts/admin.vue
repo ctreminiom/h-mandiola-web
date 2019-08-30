@@ -111,6 +111,7 @@ export default {
       collapsed: true
     };
   },
+  
   methods: {
     logout() {
       localStorage.removeItem("token");

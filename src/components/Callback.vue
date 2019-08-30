@@ -42,6 +42,8 @@ export default {
           }
         );
 
+        localStorage.setItem("sub", data.profile.sub)
+
         this.$router.push(data.state.target || "/client/dashboard");
       }
     }

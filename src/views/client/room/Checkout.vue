@@ -15,7 +15,12 @@
                 <p>Adults -> {{this.adults}}</p>
                 <p>Children -> {{this.children}}</p>
 
+                <p>Client ID -> {{this.dataSource}}</p>
+                <p>Days -> {{this.days}}</p>
+
+
                 <p>Total -> 1000</p>
+
               </a-card>
             </a-col>
           </a-row>
@@ -96,15 +101,15 @@
               </a-card>
             </a-col>
 
-             <a-col :span="8">
+            <a-col :span="8">
               <a-card hoverable style title="Reservate">
                 <div class="form-body">
                   <!-- Buttons -->
-                  <br>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                  <br />
 
                   <button type="submit" class="proceed-btn">
                     <a href="#">Confirm</a>
@@ -122,18 +127,32 @@
 
 <script>
 export default {
-  props: ["id", "startDate", "endDate", "adults", "children"],
+  props: ["id", "startDate", "endDate", "adults", "children", "days"],
 
   data() {
     return {
-      adults: "",
-      children: "",
-      range: ["01/09/2018", "01/10/2018"]
+      dataSource: ""
     };
   },
 
+  mounted() {
+    this.checkout();
+  },
+
   methods: {
-    checkout() {}
+    checkout() {
+      var ID = localStorage.getItem("sub");
+
+      this.$store.dispatch("getClientInfo",ID).then(
+        response => {
+          this.dataSource = response.ID;
+
+        },
+        error => {
+          this.$message.error(error);
+        }
+      );
+    }
   }
 };
 </script>
