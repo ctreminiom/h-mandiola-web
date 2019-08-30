@@ -74,9 +74,6 @@ export default {
                 isAvailable.contains(ActualStart) ||
                 isAvailable.contains(ActualEnd)
               ) {
-                this.$message.error(
-                  "There's a reservation between those dates"
-                );
               } else {
                 this.$router.push({
                   name: "client-checkout",

@@ -74,8 +74,8 @@ export default {
             duration: 3
           });
           this.$notification.open({
-            message: "User Module",
-            description: response,
+            message: "Product Module",
+            description: "The product has been created",
             icon: <a-icon type="smile" style="color: #108ee9" />
           });
           this.$router.push({name: "admin-products"})

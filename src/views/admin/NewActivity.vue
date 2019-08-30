@@ -75,13 +75,13 @@ export default {
           });
           this.$notification.open({
             message: "User Module",
-            description: response,
+            description: "The activity has been created!!",
             icon: <a-icon type="smile" style="color: #108ee9" />
           });
-          this.$router.push("/admin/dashboard/activities");
+          this.$router.push("/admin/dashboard/administration/activities");
         },
         error => {
-          this.$message.error("error creating the user");
+          this.$message.error("error creating the activity");
         }
       );
     },

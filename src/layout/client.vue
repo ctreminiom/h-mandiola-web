@@ -19,7 +19,7 @@
         </a-menu-item>
 
         <a-menu-item key="Easy">
-          <router-link to="/admin/client/home">
+          <router-link to="/admin/client/easy/pay/account">
             <a-icon type="credit-card" />EasyPay account
           </router-link>
         </a-menu-item>

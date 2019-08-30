@@ -203,6 +203,28 @@ export default new Vuex.Store({
       })
 
     },
+
+    processPaymentWithEasyPay(context, data) {
+
+      return new Promise((resolve, reject) => {
+
+        let options = { url: `http://35.188.37.134:7000/module/easy/pay`, method: "POST", data: data}
+
+        Axios(options)
+          .then(response => {
+            console.log(response)
+            resolve(response.data.message)
+          })
+          .catch(err => {
+            console.log(err.error)
+            reject(err.error)
+          })
+
+
+
+      })
+
+    },
     addCard(context, data) {
 
       return new Promise((resolve, reject) => {
@@ -230,6 +252,28 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
 
         let options = { url: `http://35.188.37.134:8000/public/module/reservation`, method: "POST", data: data}
+
+        Axios(options)
+          .then(response => {
+            console.log(response)
+            resolve(response.data.message)
+          })
+          .catch(err => {
+            console.log(err.error)
+            reject(err.error)
+          })
+
+
+
+      })
+
+    },
+
+    addEasyAccount(context, data) {
+
+      return new Promise((resolve, reject) => {
+
+        let options = { url: `http://35.188.37.134:7000/module/easy`, method: "POST", data: data}
 
         Axios(options)
           .then(response => {
@@ -442,6 +486,25 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
 
         let options = { url: `http://35.188.37.134:7000/module/cards`, method: "GET" }
+
+        Axios(options)
+          .then(response => {
+            resolve(response.data.message)
+          })
+          .catch(err => {
+            console.log(err)
+            reject(err.data.message)
+          })
+
+
+
+      })
+    },
+
+    getEasyAccounts(context) {
+      return new Promise((resolve, reject) => {
+
+        let options = { url: `http://35.188.37.134:7000/module/easy/accounts`, method: "GET" }
 
         Axios(options)
           .then(response => {

@@ -29,6 +29,7 @@ import AdminActiveRooms from './views/admin/RoomsReady'
 import AdminTransactions from './views/admin/Transations'
 import AdminReservations from './views/admin/Reservations'
 import AdminTransactionsAPI from './views/admin/TransactionsAPI'
+import AdminClientEasyPay from './views/client/NewEasyAccount'
 
 import PublicLogin from './views/public/Public'
 
@@ -39,6 +40,7 @@ import DateClient from './views/client/Date'
 import CheckoutPayment from './views/client/Checkout'
 import CreditCardsClient from './views/client/CreditCards'
 import NewCreditCard from './views/client/NewCreditCard'
+import EasyPay from './views/client/EasyAccount'
 
 
 import Callback from "./components/Callback.vue";
@@ -109,7 +111,7 @@ const router = new Router({
         component: AdminConsecutives,
         meta: { requiresAdminAuth: true },
 
-      }, 
+      },
       {
         path: "/admin/dashboard/administration/activities",
         name: "admin-activities",
@@ -210,7 +212,7 @@ const router = new Router({
         component: AdminTransactionsAPI,
         meta: { requiresAdminAuth: true },
 
-      }
+      },
 
       ]
     },
@@ -259,11 +261,24 @@ const router = new Router({
           name: "client-credit-cards",
           component: CreditCardsClient
         },
-          {
-            path: "/admin/client/credit/card/new",
-            name: "client-new-credit-card",
-            component: NewCreditCard
-          }
+        {
+          path: "/admin/client/credit/card/new",
+          name: "client-new-credit-card",
+          component: NewCreditCard
+        },
+        {
+          path: "/admin/client/easy/pay/account",
+          name: "admin-client-easy",
+          component: EasyPay,
+          meta: { requiresAdminAuth: true },
+        },
+        {
+          path: "/admin/client/easy/pay/new",
+          name: "easy-pay-new",
+          component: AdminClientEasyPay,
+          meta: { requiresAdminAuth: true },
+
+        }
       ]
 
     }
