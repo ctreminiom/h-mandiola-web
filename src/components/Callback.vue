@@ -1,6 +1,5 @@
 <template>
   <div class="spinner">
-    <img src="../assets/loading.svg" alt="Loading" />
   </div>
 </template>
 
@@ -11,6 +10,8 @@ export default {
       if (!data.error) {
         console.log("------------------------------------");
         console.log(data.profile);
+        console.log("------------------------------------");
+
 
         let body = {
           consecutive: "3",
@@ -35,16 +36,15 @@ export default {
               description: response,
               icon: <a-icon type="smile" style="color: #108ee9" />
             });
-
           },
           error => {
             this.$message.error("error creating the user");
           }
         );
 
-        localStorage.setItem("sub", data.profile.sub)
+        localStorage.setItem("sub", data.profile.sub);
 
-        this.$router.push(data.state.target || "/client/dashboard");
+        this.$router.push("/admin/client/home");
       }
     }
   },

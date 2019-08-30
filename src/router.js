@@ -1,161 +1,261 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+
+import AdminDashboard from './layout/admin'
+import AdminHome from './views/admin/Home'
+import AdminUsers from './views/admin/Users'
+import AdminNewUser from './views/admin/NewUser'
+import AdminChangePassword from './views/admin/ChangePassword'
+import AdminUserGrants from './views/admin/ChangeGrants'
+
+
+import AdminAdministrator from './views/admin/Administration'
+import AdminConsecutives from './views/admin/Consecutives'
+import AdminActivities from './views/admin/Activities'
+import AdminNewActivity from './views/admin/NewActivity'
+import AdminRooms from './views/admin/Rooms'
+import AdminNewRoom from './views/admin/NewRoom'
+import AdminProducts from './views/admin/Product'
+import AdminNewProduct from './views/admin/NewProduct'
+import AdminClients from './views/admin/Clients'
+
+import AdminQueries from './views/admin/Queries'
+import AdminLogs from './views/admin/Logs'
+import AdminErrors from './views/admin/Errors'
+import AdminActiveRooms from './views/admin/RoomsReady'
+
+
+import AdminTransactions from './views/admin/Transations'
+import AdminReservations from './views/admin/Reservations'
+import AdminTransactionsAPI from './views/admin/TransactionsAPI'
+
+import PublicLogin from './views/public/Public'
+
+import AdminClient from './layout/client'
+import ClientHome from './views/client/Home'
+import RoomsClient from './views/client/Rooms'
+import DateClient from './views/client/Date'
+import CheckoutPayment from './views/client/Checkout'
+import CreditCardsClient from './views/client/CreditCards'
+
+
 import Callback from "./components/Callback.vue";
-import ClientDashboard from './layouts/client/dashboard'
-
-import auth from "./auth/authService";
-
-
-
-import AdminDashboard from './layouts/admin'
-import AdminUser from './views/admin/user'
-import AdminUserPassword from './views/admin/password'
-import AdminNewUser from './views/admin/newUser'
-import AdminGrant from './views/admin/grant'
-import AdminConsecutive from './views/admin/consecutive'
-import AdminActivity from './views/admin/activity'
-import AdminNewActivity from './views/admin/newActivity'
-import AdminRoom from './views/admin/room'
-import AdminNewRoom from './views/admin/newRoom'
-import AdminProduct from './views/admin/product'
-import AdminNewProduct from './views/admin/newProduct'
-import AdminLogs from './views/admin/logs'
-import AdminErrors from './views/admin/errors'
-import AdminClients from './views/admin/client'
-
-import CLientRooms from './views/client/room/Rooms'
-import ClientDates from './views/client/room/Dates'
-import ClientCheckout from './views/client/room/Checkout'
-
-
-import CLientArticle from './views/client/article/Article'
-
 
 Vue.use(Router)
 
 const router = new Router({
-    mode: 'history',
-    base: process.env.BASE_URL,
-    routes: [{
-        path: '/',
-        name: 'home',
-        component: Home
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: [
+    {
+      path: "/callback",
+      name: "callback",
+      component: Callback
     },
     {
-        path: "/callback",
-        name: "callback",
-        component: Callback
+      path: "/",
+      name: 'public-login',
+      component: PublicLogin
     },
     {
-        path: "/client/dashboard",
-        name: 'client-dashboard',
-        component: ClientDashboard,
-        children: [{
-            path: "/client/dashboard/rooms",
-            name: "client-rooms",
-            component: CLientRooms,
+      path: '/admin/dashboard',
+      name: 'admin-dashboard',
+      component: AdminDashboard,
+      meta: { requiresAdminAuth: true },
+      children: [{
+        path: '/admin/dashboard/home',
+        name: 'admin-dashboard-home',
+        component: AdminHome,
+        meta: { requiresAdminAuth: true },
+      },
+      {
+        path: "/admin/dashboard/security/users",
+        name: "admin-users",
+        component: AdminUsers,
+        meta: { requiresAdminAuth: true },
+
+      },
+      {
+        path: "/admin/dashboard/security/new/user",
+        name: "admin-new-user",
+        component: AdminNewUser,
+        meta: { requiresAdminAuth: true },
+      },
+      {
+        path: "/admin/dashboard/security/user/:username/change/password",
+        name: "admin-change-user-password",
+        component: AdminChangePassword,
+        meta: { requiresAdminAuth: true },
+        props: true
+      },
+      {
+        path: "/admin/dashboard/security/user/:username/grants",
+        name: "admin-user-grants",
+        component: AdminUserGrants,
+        meta: { requiresAdminAuth: true },
+        props: true
+      },
+      {
+        path: "/admin/dashboard/administration",
+        name: "admin-administrator",
+        component: AdminAdministrator,
+        meta: { requiresAdminAuth: true },
+      },
+      {
+        path: "/admin/dashboard/administration/consecutives",
+        name: "admin-consecutives",
+        component: AdminConsecutives,
+        meta: { requiresAdminAuth: true },
+
+      }, 
+      {
+        path: "/admin/dashboard/administration/activities",
+        name: "admin-activities",
+        component: AdminActivities,
+        meta: { requiresAdminAuth: true },
+      },
+      {
+        path: "/admin/dashboard/administration/activity/new",
+        name: "admin-activity-new",
+        component: AdminNewActivity,
+        meta: { requiresAdminAuth: true },
+      },
+      {
+        path: "/admin/dashboard/administration/rooms",
+        name: "admin-rooms",
+        component: AdminRooms,
+        meta: { requiresAdminAuth: true },
+
+      },
+      {
+        path: "/admin/dashboard/administration/room/new",
+        name: "admin-room-new",
+        component: AdminNewRoom,
+        meta: { requiresAdminAuth: true },
+      },
+      {
+        path: "/admin/dashboard/administration/products",
+        name: "admin-products",
+        component: AdminProducts,
+        meta: { requiresAdminAuth: true },
+      },
+      {
+        path: "/admin/dashboard/administration/product/new",
+        name: "admin-product-new",
+        component: AdminNewProduct,
+        meta: { requiresAdminAuth: true },
+
+      },
+      {
+        path: "/admin/dashboard/administration/active/clients",
+        name: "admin-clients-active",
+        component: AdminClients,
+        meta: { requiresAdminAuth: true },
+
+      },
+      {
+        path: "/admin/dashboard/queries",
+        name: "admin-queries",
+        component: AdminQueries,
+        meta: { requiresAdminAuth: true },
+
+      },
+      {
+        path: "/admin/dashboard/queries/logs",
+        name: "admin-queries-logs",
+        component: AdminLogs,
+        meta: { requiresAdminAuth: true },
+
+      },
+      {
+        path: "/admin/dashboard/queries/errors",
+        name: "admin-queries-errors",
+        component: AdminErrors,
+        meta: { requiresAdminAuth: true },
+
+      },
+      {
+        path: "/admin/dashboard/queries/active/rooms",
+        name: "admin-queries-active-rooms",
+        component: AdminActiveRooms,
+        meta: { requiresAdminAuth: true },
+
+      },
+      {
+        path: "/admin/dashboard/queries/active/clients",
+        name: "admin-queries-clients-active",
+        component: AdminClients,
+        meta: { requiresAdminAuth: true },
+
+      },
+      {
+        path: "/admin/dashboard/transactions",
+        name: "admin-transactions",
+        component: AdminTransactions,
+        meta: { requiresAdminAuth: true },
+
+      },
+      {
+        path: "/admin/dashboard/transactions/reservations",
+        name: "admin-reservations",
+        component: AdminReservations,
+        meta: { requiresAdminAuth: true },
+
+      },
+      {
+        path: "/admin/dashboard/transactions/transactions",
+        name: "admin-transaction-api",
+        component: AdminTransactionsAPI,
+        meta: { requiresAdminAuth: true },
+
+      }
+
+      ]
+    },
+    {
+      path: '/admin/client',
+      name: "admin-client",
+      component: AdminClient,
+      meta: { requiresClientAuth: true },
+      children: [
+        {
+          path: '/admin/client/home',
+          name: 'admin-client-home',
+          component: ClientHome,
+          meta: { requiresClientAuth: true },
         },
         {
-            path: "/client/dashboard/activities",
-            name: "client-article",
-            component: CLientArticle,
+          path: '/admin/client/reservation/choose/room',
+          name: "client-rooms",
+          component: RoomsClient,
+          meta: { requiresClientAuth: true },
+          props: true
+
         },
         {
-            path: "/client/dashboard/rooms/dates",
-            name: "dates-room",
-            component: ClientDates,
-            props: true
+          path: '/admin/client/reservation/choose/room/:number/dates',
+          name: 'rooms-dates',
+          component: DateClient,
+          props: true,
+          meta: { requiresClientAuth: true },
         },
         {
-            path: "/client/dashboard/rooms/dates/checkout",
-            name: "dates-checkout",
-            component: ClientCheckout,
-            props: true
+          path: '/admin/client/reservation/choose/room/:number/checkout',
+          name: "client-checkout",
+          component: CheckoutPayment,
+          props: true,
+          meta: { requiresClientAuth: true },
+        },
+        {
+          path: "/admin/client/credit/cards",
+          name: "client-credit-cards",
+          component: CreditCardsClient
         }
-        ]
-    },
-    {
-        path: "/admin/dashboard",
-        name: 'admin-dashboard',
-        component: AdminDashboard,
-        children: [{
-            path: "/admin/dashboard/users",
-            name: "admin-user",
-            component: AdminUser,
-        },
-        {
-            path: "/admin/dashboard/user/:username/change/password",
-            name: "admin-user-password",
-            component: AdminUserPassword,
-            props: true
-        },
-        {
-            path: "/admin/dashboard/user/new",
-            name: "admin-user-new",
-            component: AdminNewUser,
-        },
-        {
-            path: "/admin/dashboard/user/:username/grants",
-            name: "admin-user-grant",
-            component: AdminGrant,
-            props: true
-        },
-        {
-            path: "/admin/dashboard/consecutives",
-            name: "admin-consecutives",
-            component: AdminConsecutive,
-        },
-        {
-            path: "/admin/dashboard/activities",
-            name: "admin-activities",
-            component: AdminActivity,
-        },
-        {
-            path: "/admin/dashboard/activity/new",
-            name: "admin-activities-new",
-            component: AdminNewActivity,
-        },
-        {
-            path: "/admin/dashboard/rooms",
-            name: "admin-rooms",
-            component: AdminRoom,
-        },
-        {
-            path: "/admin/dashboard/room/new",
-            name: "admin-rooms-new",
-            component: AdminNewRoom,
-        },
-        {
-            path: "/admin/dashboard/products",
-            name: "admin-products",
-            component: AdminProduct,
-        },
-        {
-            path: "/admin/dashboard/product/new",
-            name: "admin-product-new",
-            component: AdminNewProduct,
-        },
-        {
-            path: "/admin/dashboard/logs",
-            name: "admin-logs",
-            component: AdminLogs,
-        },
-        {
-            path: "/admin/dashboard/errors",
-            name: "admin-errors",
-            component: AdminErrors,
-        },
-        {
-            path: "/admin/dashboard/clients",
-            name: "admin-clients",
-            component: AdminClients,
-        },
-        ]
+      ]
+
     }
 
-    ]
+
+  ]
 })
-
-
 export default router;

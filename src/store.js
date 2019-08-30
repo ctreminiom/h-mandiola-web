@@ -182,6 +182,50 @@ export default new Vuex.Store({
 
     },
 
+    processPaymentWithCreditCard(context, data) {
+
+      return new Promise((resolve, reject) => {
+
+        let options = { url: `http://5.188.37.134:7000/module/card/pay`, method: "POST", data: data}
+
+        Axios(options)
+          .then(response => {
+            console.log(response)
+            resolve(response.data.message)
+          })
+          .catch(err => {
+            console.log(err.error)
+            reject(err.error)
+          })
+
+
+
+      })
+
+    },
+
+    reservate(context, data) {
+
+      return new Promise((resolve, reject) => {
+
+        let options = { url: `http://35.188.37.134:8000/public/module/reservation`, method: "POST", data: data}
+
+        Axios(options)
+          .then(response => {
+            console.log(response)
+            resolve(response.data.message)
+          })
+          .catch(err => {
+            console.log(err.error)
+            reject(err.error)
+          })
+
+
+
+      })
+
+    },
+
     removeGrant(context, data) {
 
       return new Promise((resolve, reject) => {
@@ -335,11 +379,48 @@ export default new Vuex.Store({
 
       })
     },
+    getTransactions(context) {
+      return new Promise((resolve, reject) => {
+
+        let options = { url: `http://35.188.37.134:7000/module/transactions`, method: "GET" }
+
+        Axios(options)
+          .then(response => {
+            resolve(response.data.message)
+          })
+          .catch(err => {
+            console.log(err)
+            reject(err.data.message)
+          })
+
+
+
+      })
+    },
 
     getClientInfo(context, username) {
       return new Promise((resolve, reject) => {
 
         let options = { url: `http://35.188.37.134:8000/public/module/client/${username}`, method: "GET" }
+
+        Axios(options)
+          .then(response => {
+            resolve(response.data.message)
+          })
+          .catch(err => {
+            console.log(err)
+            reject(err.data.message)
+          })
+
+
+
+      })
+    },
+
+    getCards(context) {
+      return new Promise((resolve, reject) => {
+
+        let options = { url: `http://35.188.37.134:7000/module/cards`, method: "GET" }
 
         Axios(options)
           .then(response => {

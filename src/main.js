@@ -6,8 +6,6 @@ import './registerServiceWorker'
 
 import VeeValidate from 'vee-validate';
 
-import Resource from 'vue-resource'
-
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.less'
 
@@ -35,19 +33,12 @@ Vue.use(VueReCaptcha, { siteKey: '6LcNDbUUAAAAANnS7j4i5oM-LE4O6cvlX6Y02t4I' })
 
 Vue.use(VeeValidate);
 
-Vue.use(Resource);
 
 import DateRangePicker from "@gravitano/vue-date-range-picker";
  
 // use the plugin
 Vue.use(DateRangePicker);
 
-
-Vue.http.interceptors.push((request, next) => {
-  request.headers['Authorization'] = "Bearer " + localStorage.getItem("token")
-  request.headers['Accept'] = 'application/json'
-  next()
-})
 
 
 Vue.config.productionTip = false;

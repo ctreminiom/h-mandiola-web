@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "short_name": "app",
+  "name": "antd",
+  "short_name": "antd",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
