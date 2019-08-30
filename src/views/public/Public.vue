@@ -1,7 +1,9 @@
 <template>
   <a-layout id="components-layout-demo-top" class="layout">
     <a-layout-header>
-      <div class="logo"></div>
+      <div class="logo">
+        <img style="height:60px; width:60px;" src="../../assets/hmandlogo.png" />
+      </div>
 
       <a-menu mode="horizontal" theme="dark" :style="{ lineHeight: '64px' }">
         <a-menu-item key="security" @click="loginClient">

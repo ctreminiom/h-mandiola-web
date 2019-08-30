@@ -6,8 +6,8 @@
           <a-card hoverable style="width: 100%" @click="go()">
             <img alt="example" src="../../assets/reservation.png" slot="cover" />
             <a-card-meta
-              title="Reservate Room"
-              description="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. "
+              title="Reserve Room"
+              description="In this section you will be able to reserve a room and set the desired dates for your trip. Feel free to set your preferences as you whish and place the reservation accordingly "
             >
               <a-avatar slot="avatar" style="color: #46324E; backgroundColor: #fde3cf">R</a-avatar>
             </a-card-meta>

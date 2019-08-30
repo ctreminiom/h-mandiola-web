@@ -4,17 +4,17 @@
       <div class="gutter-box">
         <a-row>
           <a-col :span="24">
-            <a-card hoverable style>
-              <p>ROOM ID -> {{this.id}}</p>
-              <p>Start Date -> {{this.startDate}}</p>
-              <p>End Date -> {{this.endDate}}</p>
-              <p>Adults -> {{this.adults}}</p>
-              <p>Children -> {{this.children}}</p>
+            <a-card title="Reservation Details" hoverable style>
+              <b><span>ROOM ID: {{this.id}}</span></b></br>
+              <b><span>Start Date: {{this.startDate}}</span></b></br>
+              <b><span>End Date: {{this.endDate}}</span></b></br>
+              <b><span>Adults: {{this.adults}}</span></b></br>
+              <b><span>Children: {{this.children}}</span></b></br>
 
-              <p>Client ID -> {{this.dataSource.ID}}</p>
-              <p>Days -> {{this.days}}</p>
+              <b><span>Client ID: {{this.dataSource.ID}}</span></b></br>
+              <b><span>Days: {{this.days}}</span></b></br>
 
-              <p>Total -> 1000</p>
+              <b><span>Total: 1000</span></b></br>
             </a-card>
           </a-col>
         </a-row>

@@ -7,6 +7,7 @@ import AdminUsers from './views/admin/Users'
 import AdminNewUser from './views/admin/NewUser'
 import AdminChangePassword from './views/admin/ChangePassword'
 import AdminUserGrants from './views/admin/ChangeGrants'
+import Welcome from './views/client/Welcome'
 
 
 import AdminAdministrator from './views/admin/Administration'
@@ -223,6 +224,12 @@ const router = new Router({
           path: '/admin/client/home',
           name: 'admin-client-home',
           component: ClientHome,
+          meta: { requiresClientAuth: true },
+        },
+        {
+          path: '/admin/client/welcome',
+          name: 'admin-client-welcome',
+          component: Welcome,
           meta: { requiresClientAuth: true },
         },
         {

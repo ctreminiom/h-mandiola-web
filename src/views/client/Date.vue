@@ -6,7 +6,7 @@
           <a-card hoverable style="width: 100%" @click="go()">
             <a-form class="login-form" @submit.prevent="checkout">
               <a-form-item>
-                <a-input v-model="adults" type="number" placeholder="Select the adults" min="0">
+                <a-input v-model="adults" type="number" placeholder="Select adults quantity" min="0">
                   <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
                 </a-input>
               </a-form-item>
@@ -15,7 +15,7 @@
                 <a-input
                   v-model="children"
                   type="number"
-                  placeholder="Select the childrens"
+                  placeholder="Select children quantity"
                   min="0"
                 >
                   <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
@@ -27,7 +27,7 @@
               </a-form-item>
 
               <a-form-item>
-                <a-button type="primary" html-type="submit" class="login-form-button">Process</a-button>
+                <a-button type="primary" html-type="submit" class="login-form-button">Proceed to payment</a-button>
               </a-form-item>
             </a-form>
           </a-card>
