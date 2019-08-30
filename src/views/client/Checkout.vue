@@ -314,6 +314,8 @@ export default {
                 description: "The reservation has been created, but not paid",
                 icon: <a-icon type="smile" style="color: #108ee9" />
               });
+
+              this.$router.push("/admin/client/home");
             },
         error => {
           this.$message.error(error);
@@ -367,6 +369,8 @@ export default {
                 description: "The reservation has been created.",
                 icon: <a-icon type="smile" style="color: #108ee9" />
               });
+
+              this.$router.push("/admin/client/home");
             },
             error => {
               this.$message.error("Error creating the reservation");
