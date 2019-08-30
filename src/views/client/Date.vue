@@ -61,6 +61,7 @@ export default {
           console.log(this.number);
           for (let item of this.dataSource) {
             console.log(item.Room);
+
             if (item.Room == this.number) {
               var start = moment(item.StartDate, "DD/MM/YYYY");
               var end = moment(item.EndDate, "DD/MM/YYYY");
@@ -90,6 +91,19 @@ export default {
                   }
                 });
               }
+            } else {
+              this.$router.push({
+                name: "client-checkout",
+                params: {
+                  number: this.number,
+                  id: this.id,
+                  startDate: this.range[0],
+                  endDate: this.range[1],
+                  adults: this.adults,
+                  children: this.children,
+                  days: diff
+                }
+              });
             }
           }
         },
