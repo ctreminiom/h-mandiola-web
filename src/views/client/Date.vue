@@ -92,6 +92,14 @@ export default {
                 });
               }
             } else {
+              var start = moment(item.StartDate, "DD/MM/YYYY");
+              var end = moment(item.EndDate, "DD/MM/YYYY");
+              var ActualStart = moment(this.range[0], "DD/MM/YYYY");
+              var ActualEnd = moment(this.range[1], "DD/MM/YYYY");
+              var isAvailable = moment.range(start, end);
+              var range = moment.range(ActualStart, ActualEnd);
+              var diff = range.diff("days");
+
               this.$router.push({
                 name: "client-checkout",
                 params: {
