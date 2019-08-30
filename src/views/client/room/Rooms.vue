@@ -15,7 +15,7 @@
               <a-card hoverable style="width: 300px">
                 <img alt="example" :src="room.Image" slot="cover" height="200" width="200" />
                 <template class="ant-card-actions" slot="actions">
-                  <a-icon type="shopping-cart" @click="go(room.ID)"></a-icon>
+                  <a-icon type="shopping-cart" @click="go(room.ID, room.Number)"></a-icon>
                 </template>
                 <a-card-meta :title="room.Number"></a-card-meta>
 
@@ -60,10 +60,10 @@ export default {
         }
       );
     },
-    go(ID) {
+    go(ID,Number) {
       this.$router.push({
         name: "dates-room",
-        params: { id: ID }
+        params: { id: ID, number: Number }
       });
     }
   }
