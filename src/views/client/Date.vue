@@ -74,7 +74,6 @@ export default {
                 isAvailable.contains(ActualStart) ||
                 isAvailable.contains(ActualEnd)
               ) {
-                
               } else {
                 this.$router.push({
                   name: "client-checkout",

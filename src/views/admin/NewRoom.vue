@@ -95,11 +95,11 @@ export default {
             duration: 3
           });
           this.$notification.open({
-            message: "User Module",
-            description: response,
+            message: "Room Module",
+            description: "The room has been created",
             icon: <a-icon type="smile" style="color: #108ee9" />
           });
-          this.$router.push("/admin/dashboard/rooms");
+          this.$router.push("/admin/dashboard/administration/rooms");
         },
         error => {
           this.$message.error("error creating the rooom");
