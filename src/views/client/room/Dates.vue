@@ -9,13 +9,13 @@
               <a-card hoverable style>
                 <a-form class="login-form" @submit.prevent="checkout">
                   <a-form-item>
-                    <a-input v-model="adults">
+                    <a-input v-model="adults" type="number">
                       <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
                     </a-input>
                   </a-form-item>
 
                   <a-form-item>
-                    <a-input v-model="children">
+                    <a-input v-model="children" type="number">
                       <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
                     </a-input>
                   </a-form-item>
