@@ -112,7 +112,7 @@
 
                 <br />
 
-                <a-form class="login-form" @submit.prevent="processPayment">
+                <a-form class="login-form" @submit.prevent="processPaymentWithEasyPay">
                   <a-form-item>
                     <a-input placeholder="Username" v-model="username">
                       <a-icon slot="prefix" type="credit-card" style="color: rgba(0,0,0,.25)" />
@@ -189,12 +189,16 @@ export default {
       cvv: "",
       year: "",
       month: "",
-      card: ""
+      card: "",
+      username: "",
+      password: "",
+      code: ""
     };
   },
   mounted() {
     this.checkout();
     this.checkCard();
+    this.checkEasyAccount();
   },
   methods: {
     checkout() {
@@ -240,14 +244,43 @@ export default {
               "The system founded a credit card linked to this username"
             );
 
-            this.card = yourCards[0].Card;
-            this.cvv = yourCards[0].CVV;
-            this.year = yourCards[0].Year;
-            this.month = yourCards[0].Month;
+            this.card = yourCards[1].Card;
+            this.cvv = yourCards[1].CVV;
+            this.year = yourCards[1].Year;
+            this.month = yourCards[1].Month;
           } else {
             this.$message.info(
               "The system did not founded a credit card linked to this username"
             );
+          }
+        },
+        error => {
+          this.$message.error(error);
+        }
+      );
+    },
+    checkEasyAccount() {
+      this.$store.dispatch("getEasyAccounts").then(
+        response => {
+          var user = null;
+
+          for (let item of response) {
+            if (item.Username == this.dataSource.Sub) {
+              user = item;
+            }
+          }
+
+          if (user == null) {
+            this.$message.info(
+              "The system did not  a easy account linked to this username"
+            );
+          } else {
+            this.$message.info(
+              "The system founded a easy account linked to this username"
+            );
+
+            this.username = user.Username;
+            this.code = user.Code;
           }
         },
         error => {
@@ -271,9 +304,17 @@ export default {
 
       this.$store.dispatch("reservate", requestBody).then(
         response => {
-          this.dataSource = response;
-          this.$message.error(response);
-        },
+          this.$notification.config({
+                placement: "bottomRight",
+                bottom: "50px",
+                duration: 7
+              });
+              this.$notification.open({
+                message: "Reservation Module",
+                description: "The reservation has been created, but not paid",
+                icon: <a-icon type="smile" style="color: #108ee9" />
+              });
+            },
         error => {
           this.$message.error(error);
         }
@@ -302,7 +343,7 @@ export default {
           this.$message.error(response);
 
           var requestBody = {
-            consecutive: "6",
+            consecutive: "8",
             client: this.dataSource.ID,
             room: this.id,
             startDate: this.startDate,
@@ -316,11 +357,74 @@ export default {
 
           this.$store.dispatch("reservate", requestBody).then(
             response => {
-              this.dataSource = response;
-              this.$message.error(response);
+               this.$notification.config({
+                placement: "bottomRight",
+                bottom: "50px",
+                duration: 7
+              });
+              this.$notification.open({
+                message: "Reservation Module",
+                description: "The reservation has been created.",
+                icon: <a-icon type="smile" style="color: #108ee9" />
+              });
             },
             error => {
-              this.$message.error(error);
+              this.$message.error("Error creating the reservation");
+            }
+          );
+        },
+        error => {
+          this.$message.error(error);
+        }
+      );
+    },
+    processPaymentWithEasyPay() {
+      var days = this.days;
+
+      var finalPrice = 1000 * days;
+
+      var finalAsString = finalPrice.toString();
+
+      var body = {
+        username: this.username,
+        password: this.password,
+        code: this.code,
+        price: finalAsString
+      };
+
+      this.$store.dispatch("processPaymentWithEasyPay", body).then(
+        response => {
+          this.$message.error(response);
+
+          var requestBody = {
+            consecutive: "8",
+            client: this.dataSource.ID,
+            room: this.id,
+            startDate: this.startDate,
+            endDate: this.endDate,
+            hasPaid: "true",
+            adults: this.adults,
+            children: this.children
+          };
+
+          console.log(requestBody);
+
+          this.$store.dispatch("reservate", requestBody).then(
+            response => {
+              this.$notification.config({
+                placement: "bottomRight",
+                bottom: "50px",
+                duration: 7
+              });
+              this.$notification.open({
+                message: "Reservation Module",
+                description: "The reservation has been created.",
+                icon: <a-icon type="smile" style="color: #108ee9" />
+              });
+              this.$router.push("/admin/client/home");
+            },
+            error => {
+              this.$message.error("Error creating the reservation");
             }
           );
         },
